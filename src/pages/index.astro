@@ -6,6 +6,7 @@ import Gallery from '../components/Gallery.astro';
 import ConfidenceBadge from '../components/ConfidenceBadge.astro';
 import UniqueFilter from '../components/UniqueFilter.tsx';
 import AtlasBrowser from '../components/AtlasBrowser.tsx';
+import BalanceList from '../components/BalanceList.tsx';
 import { timeline } from '../content/timeline';
 import { ascendancies } from '../content/ascendancies';
 import { endgameMechanics } from '../content/endgame';
@@ -472,22 +473,7 @@ const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
 
   <!-- BALANCE -->
   <Section id="balance" title="Balance & Reworks">
-    {balanceChanges.map(change => (
-      <div class="card" style="margin-bottom:1rem;">
-        <div style="display:flex;align-items:baseline;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.5rem;">
-          <span style={`font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;padding:0.1em 0.5em;border-radius:3px;background:${change.category === 'nerf' ? 'color-mix(in srgb,#e53935 18%,transparent)' : change.category === 'buff' ? 'color-mix(in srgb,#43a047 18%,transparent)' : 'color-mix(in srgb,#ff9800 18%,transparent)'};color:${change.category === 'nerf' ? '#e53935' : change.category === 'buff' ? '#43a047' : '#ff9800'};`}>
-            {change.category}
-          </span>
-          <strong style="color:var(--color-gold-light);">{change.subject}</strong>
-          <ConfidenceBadge tier={change.confidence} />
-        </div>
-        <p style="color:var(--color-text-secondary);margin:0 0 0.5rem;">{change.summary}</p>
-        <ul style="margin:0;padding-left:1.25rem;color:var(--color-text-muted);font-size:0.875rem;">
-          {change.details.map(d => <li>{d}</li>)}
-        </ul>
-        {change.note && <p style="margin:0.4rem 0 0;font-size:0.8rem;color:var(--color-conf-datamine);">⚠ {change.note}</p>}
-      </div>
-    ))}
+    <BalanceList changes={balanceChanges} client:load />
   </Section>
 
   <!-- QOL -->

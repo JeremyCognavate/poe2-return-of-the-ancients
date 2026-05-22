@@ -1144,3 +1144,29 @@ tr:hover td {
 .atlas-kind--core    { background: color-mix(in srgb, #43a047 18%, transparent); color: #43a047; }
 .atlas-kind--master  { background: color-mix(in srgb, #9c27b0 18%, transparent); color: #ce93d8; }
 .atlas-kind--league  { background: color-mix(in srgb, #ff9800 18%, transparent); color: #ff9800; }
+
+/* ===== Balance Before/After Toggle ===== */
+.balance-toggle {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.balance-deltas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 2px solid var(--color-border-gold);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 3px 3px 0;
+  font-size: 0.875rem;
+}
+.balance-delta--before {
+  color: #e57373;
+  text-decoration: line-through;
+  opacity: 0.85;
+}
+.balance-delta--after {
+  color: #81c784;
+}
