@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { promises as fs } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { fetchCached } from '../poe2db/fetch.mjs';
+import { fetchCached, cacheKeyFor } from '../poe2db/fetch.mjs';
 
 describe('fetchCached', () => {
   let cacheDir;
@@ -31,8 +31,3 @@ describe('fetchCached', () => {
     expect(key).toBe('us_Test_Page');
   });
 });
-
-function cacheKeyFor(url) {
-  const u = new URL(url);
-  return u.pathname.replace(/^\//, '').replace(/\//g, '_');
-}
