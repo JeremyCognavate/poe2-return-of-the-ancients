@@ -93,4 +93,10 @@ describe('parseUniqueDetail', () => {
     expect(item.explicits.some(e => e.includes('Physical Damage'))).toBe(true);
     expect(item.explicits.some(e => e.includes('Strength'))).toBe(true);
   });
+
+  it('extracts reqLevel when present', () => {
+    const item = parseUniqueDetail(detailHtml, 'Brutus_Lead_Sprinkler');
+    expect(typeof item.reqLevel).toBe('number');
+    expect(item.reqLevel).toBeGreaterThan(0);
+  });
 });

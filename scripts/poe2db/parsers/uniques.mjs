@@ -85,7 +85,7 @@ export function parseUniqueDetail(html, slug) {
 
   // Required level — appears in the Stats section as text
   const statsText = popup.find('.Stats').text();
-  const reqLevelMatch = statsText.match(/Requires Level (\d+)/i);
+  const reqLevelMatch = statsText.match(/Requires[:\s]+Level\s+(\d+)/i);
   const reqLevel = reqLevelMatch ? parseInt(reqLevelMatch[1], 10) : undefined;
 
   return { name, slug, baseType, iconUrl, implicits, explicits, reqLevel };
