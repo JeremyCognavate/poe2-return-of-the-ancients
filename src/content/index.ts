@@ -10,3 +10,4 @@ export * from './masters';
 export * from './qol';
 export * from './atlasNodes';
 export * from './image-manifest';
+export * from './patchNotes.js';
