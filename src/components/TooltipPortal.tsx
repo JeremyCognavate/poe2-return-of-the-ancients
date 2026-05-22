@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 interface TooltipData {
@@ -168,6 +168,7 @@ export default function TooltipPortal() {
   const [pinned, setPinned] = useState(false);
   const pinnedRef = useRef(false);
   const triggerRef = useRef<Element | null>(null);
+  const tooltipRef = useRef<HTMLDivElement | null>(null);
 
   const findTrigger = (el: EventTarget | null): Element | null => {
     if (!(el instanceof Element)) return null;
@@ -232,10 +233,26 @@ export default function TooltipPortal() {
     };
   }, []);
 
+  // Correct position using the real rendered size (computePos uses estimates).
+  useLayoutEffect(() => {
+    if (!data) return;
+    const el = tooltipRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const left = Math.max(8, Math.min(pos.left, vw - r.width - 8));
+    const top  = Math.max(8, Math.min(pos.top, vh - r.height - 8));
+    if (left !== pos.left || top !== pos.top) {
+      setPos(p => ({ ...p, top, left }));
+    }
+  }, [data, pos.top, pos.left]);
+
   if (!data) return null;
 
   const tooltip = (
     <div
+      ref={tooltipRef}
       className={`poe-tooltip${pinned ? ' poe-tooltip--pinned' : ''}${data.type === 'unique' ? ' poe-tooltip--unique' : ''}`}
       style={{ top: pos.top, left: pos.left }}
       role="tooltip"
