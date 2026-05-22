@@ -1,6 +1,6 @@
 // scripts/scrape.mjs
 import { mkdir } from 'node:fs/promises';
-import { writeFileSync } from 'node:fs';
+import { writeFileSync, readFileSync, existsSync } from 'node:fs';
 import { fetchCached } from './poe2db/fetch.mjs';
 import { parseUniqueList, parseUniqueDetail } from './poe2db/parsers/uniques.mjs';
 import { parseRunes } from './poe2db/parsers/runes.mjs';
@@ -8,8 +8,14 @@ import { parseKalguuranSkills } from './poe2db/parsers/kalguuran.mjs';
 import { parseAscendancy } from './poe2db/parsers/ascendancies.mjs';
 import { parseEndgameContent } from './poe2db/parsers/endgame.mjs';
 import { fetchPatchNotes } from './patchnotes.mjs';
+import { diffDatasets } from './diff.mjs';
 
 const OUT = 'src/content/generated';
+const KEY_FIELDS = {
+  uniques: 'slug', runes: 'slug', kalguuran: 'slug',
+  ascendancies: 'name', endgame: 'id', patchNotes: 'id',
+};
+const changelog = [];
 
 async function ensureOutDir() {
   await mkdir(OUT, { recursive: true });
@@ -17,6 +23,24 @@ async function ensureOutDir() {
 
 function write(name, data) {
   const path = `${OUT}/${name}.json`;
+  const keyField = KEY_FIELDS[name];
+  if (keyField && Array.isArray(data)) {
+    const prior = existsSync(path)
+      ? JSON.parse(readFileSync(path, 'utf8'))
+      : null;
+    const normalized = JSON.parse(JSON.stringify(data));
+    const { added, changed } = diffDatasets(prior, normalized, keyField);
+    const today = new Date().toISOString().slice(0, 10);
+    const byKey = new Map(data.map(o => [o[keyField], o]));
+    for (const key of added) {
+      const o = byKey.get(key);
+      changelog.push({ date: today, kind: 'added', dataset: name, key, label: o?.name ?? o?.title ?? key });
+    }
+    for (const { key, fields } of changed) {
+      const o = byKey.get(key);
+      changelog.push({ date: today, kind: 'changed', dataset: name, key, label: o?.name ?? o?.title ?? key, fields });
+    }
+  }
   writeFileSync(path, JSON.stringify(data, null, 2), 'utf8');
   console.log(`Written: ${path} (${data?.length ?? Object.keys(data ?? {}).length} records)`);
 }
@@ -97,6 +121,14 @@ async function main() {
   const toRun = targets.length > 0 ? targets : Object.keys(CATEGORIES);
   for (const cat of toRun) {
     await CATEGORIES[cat]();
+  }
+  if (changelog.length > 0) {
+    const wnPath = `${OUT}/whatsnew.json`;
+    const existing = existsSync(wnPath) ? JSON.parse(readFileSync(wnPath, 'utf8')) : [];
+    const cutoff = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
+    const merged = [...changelog, ...existing].filter(e => e.date >= cutoff);
+    writeFileSync(wnPath, JSON.stringify(merged, null, 2), 'utf8');
+    console.log(`What's New: +${changelog.length} entries`);
   }
   console.log('\nScrape complete.');
 }
