@@ -1,5 +1,6 @@
 ---
 import Sidebar from '../components/Sidebar';
+import TooltipPortal from '../components/TooltipPortal';
 import '../styles/global.css';
 
 interface Props {
@@ -51,6 +52,8 @@ const hasHero = Astro.slots.has('hero');
         <Sidebar client:load />
       </aside>
 
+      <TooltipPortal client:idle />
+
       <!-- Main content -->
       <main class="layout-main">
         <slot />
@@ -66,29 +69,6 @@ const hasHero = Astro.slots.has('hero');
           sidebar.classList.toggle('open');
         });
       }
-
-      // Horizontal flip: only changes on resize, not scroll
-      const TT_W = 372;
-      function updateHorizFlip(): void {
-        const vw = window.innerWidth;
-        (document.querySelectorAll('.unique-wrap') as NodeListOf<HTMLElement>).forEach(wrap => {
-          wrap.classList.toggle('tooltip-left', wrap.getBoundingClientRect().right + TT_W > vw);
-        });
-      }
-      updateHorizFlip();
-      window.addEventListener('resize', updateHorizFlip, { passive: true });
-
-      // Vertical flip: computed at hover time (card must be in viewport for correct rect)
-      (document.querySelectorAll('.unique-wrap') as NodeListOf<HTMLElement>).forEach(wrap => {
-        wrap.addEventListener('mouseenter', () => {
-          const rect = wrap.getBoundingClientRect();
-          const tt  = wrap.querySelector('.unique-tooltip') as HTMLElement | null;
-          const ttH = tt ? tt.offsetHeight : 480;
-          const vh  = window.innerHeight;
-          // Flip above only if: tooltip overflows bottom AND there's room above the card
-          wrap.classList.toggle('tooltip-above', rect.bottom + ttH > vh && rect.top >= ttH);
-        });
-      });
     </script>
   </body>
 </html>

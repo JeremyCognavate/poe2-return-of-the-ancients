@@ -884,6 +884,100 @@ tr:hover td {
   transition: border-color 0.2s;
 }
 
+/* ===== Portal Tooltip ===== */
+
+.poe-tooltip {
+  position: fixed;
+  z-index: 9999;
+  width: 380px;
+  max-width: calc(100vw - 1rem);
+  pointer-events: none;
+  border: 1px solid #3a2f1c;
+  border-top: 2px solid var(--color-gold-primary, #c9a961);
+  background: linear-gradient(180deg, #15110a 0%, #0b0907 100%);
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  animation: ptt-in 0.1s ease;
+}
+
+.poe-tooltip--pinned {
+  pointer-events: auto;
+  border-color: var(--color-gold-primary, #c9a961);
+}
+
+@keyframes ptt-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ptt-generic {
+  padding: 0.75rem 1rem 1rem;
+}
+
+.ptt-title {
+  color: var(--color-gold-primary, #c9a961);
+  font-family: var(--font-display, serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.ptt-tags {
+  color: var(--color-text-muted, #604e38);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.ptt-cost {
+  color: var(--color-gold-dim, #7a6030);
+  margin-bottom: 0.5rem;
+}
+
+.ptt-desc {
+  color: var(--color-text-secondary, #a89070);
+  margin: 0 0 0.5rem;
+  line-height: 1.5;
+}
+
+.ptt-stats {
+  color: #88f;
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.ptt-stats li::before {
+  content: '⬥ ';
+  color: var(--color-gold-dim, #7a6030);
+  font-size: 0.6em;
+}
+
+.ptt-note {
+  color: var(--color-conf-datamine, #ff9800);
+  font-size: 0.7rem;
+  margin-top: 0.4rem;
+}
+
+.ptt-close {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--color-text-muted, #604e38);
+  cursor: pointer;
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.15rem 0.3rem;
+}
+.ptt-close:hover { color: var(--color-text-primary, #ede0c8); }
+
 .patch-notes-search:focus {
   border-color: var(--color-gold-primary, #c9a961);
 }
