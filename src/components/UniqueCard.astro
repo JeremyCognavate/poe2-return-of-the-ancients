@@ -1,0 +1,87 @@
+---
+import { Image } from 'astro:assets';
+import type { UniqueItem } from '../content/uniques';
+import ConfidenceBadge from './ConfidenceBadge.astro';
+
+interface Props { item: UniqueItem; }
+const { item } = Astro.props;
+
+// Glob all unique icons so we can resolve by filename
+type ImageModule = { default: ImageMetadata };
+const allIcons = import.meta.glob<ImageModule>('../assets/uniques/*.png');
+const icon = item.iconFile
+  ? (await allIcons[`../assets/uniques/${item.iconFile}`]?.())?.default
+  : null;
+---
+
+<div class="unique-wrap" tabindex="0">
+  {/* Compact card visible in grid */}
+  <div class="unique-card">
+    <div class="unique-card-icon">
+      {icon
+        ? <Image src={icon} alt={item.name} width={64} height={64} format="webp" quality={92} loading="lazy" />
+        : <div class="unique-card-icon-fallback">⬥</div>
+      }
+    </div>
+    <div class="unique-card-meta">
+      <div class="unique-card-name">{item.name}</div>
+      <div class="unique-card-base">{item.baseType}{item.itemClass && item.itemClass !== item.baseType ? ` · ${item.itemClass}` : ''}</div>
+      <div class="unique-card-tags">
+        <ConfidenceBadge tier={item.confidence} />
+        {item.spiritWalkerSynergy && <span class="badge badge-spirit">Spirit Walker</span>}
+      </div>
+    </div>
+  </div>
+
+  {/* PoE-style tooltip — shown on hover/focus */}
+  <div class="unique-tooltip" role="tooltip">
+    <div class="ut-header">
+      <div class="ut-name">{item.name}</div>
+      <div class="ut-base">{item.baseType}</div>
+    </div>
+
+    {icon && (
+      <div class="ut-icon-wrap">
+        <Image src={icon} alt="" width={96} height={96} format="webp" quality={95} loading="lazy" class="ut-icon" />
+      </div>
+    )}
+
+    <div class="ut-body">
+      {item.reqLevel && (
+        <>
+          <div class="ut-req">Requires: <span class="ut-req-val">Level {item.reqLevel}</span></div>
+          <div class="ut-sep" />
+        </>
+      )}
+
+      {item.implicits.length > 0 && (
+        <>
+          <div class="ut-mods ut-mods-implicit">
+            {item.implicits.map(m => <div>{m}</div>)}
+          </div>
+          <div class="ut-sep" />
+        </>
+      )}
+
+      {item.explicits.length > 0 && (
+        <div class="ut-mods ut-mods-explicit">
+          {item.explicits.map(m => <div>{m}</div>)}
+        </div>
+      )}
+
+      {item.flavour && (
+        <>
+          <div class="ut-sep" />
+          <div class="ut-flavour">{item.flavour}</div>
+        </>
+      )}
+
+      {item.note && (
+        <>
+          <div class="ut-sep" />
+          <div class="ut-note">⚠ {item.note}</div>
+        </>
+      )}
+    </div>
+  </div>
+</div>

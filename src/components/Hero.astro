@@ -1,0 +1,93 @@
+---
+import { Image } from 'astro:assets';
+import fullKeyArt from '../assets/images/Full-Key-Art.png';
+import poe2Logo from '../assets/images/POE2_ReturnoftheAncients_LOGO.png';
+---
+
+<div class="site-hero">
+  <Image
+    src={fullKeyArt}
+    alt=""
+    widths={[1280, 1920, 2560]}
+    sizes="100vw"
+    loading="eager"
+    decoding="async"
+    format="webp"
+    quality={88}
+    class="site-hero-bg"
+  />
+  <div class="site-hero-vignette" />
+  <div class="site-hero-content">
+    <div class="site-hero-left">
+      <p class="site-hero-eyebrow">Blood of Mages · Reference Codex</p>
+      <h1 class="site-hero-title">Return of<br />the Ancients</h1>
+      <p class="site-hero-launch">Path of Exile 2 · v0.5.0 · Launches 29 May 2026</p>
+
+      <!-- Live countdowns -->
+      <div class="hero-countdowns">
+        <div class="hero-cd">
+          <span class="hero-cd-label">Patch Notes</span>
+          <div class="hero-cd-timer" data-target="2026-05-21T00:00:00Z">
+            <span class="hero-cd-seg"><span class="hero-cd-n">--</span><span class="hero-cd-u">d</span></span>
+            <span class="hero-cd-colon">:</span>
+            <span class="hero-cd-seg"><span class="hero-cd-n">--</span><span class="hero-cd-u">h</span></span>
+            <span class="hero-cd-colon">:</span>
+            <span class="hero-cd-seg"><span class="hero-cd-n">--</span><span class="hero-cd-u">m</span></span>
+            <span class="hero-cd-colon">:</span>
+            <span class="hero-cd-seg"><span class="hero-cd-n">--</span><span class="hero-cd-u">s</span></span>
+          </div>
+        </div>
+        <div class="hero-cd-slash">╱</div>
+        <div class="hero-cd">
+          <span class="hero-cd-label">League Launch</span>
+          <div class="hero-cd-timer" data-target="2026-05-29T00:00:00Z">
+            <span class="hero-cd-seg"><span class="hero-cd-n">--</span><span class="hero-cd-u">d</span></span>
+            <span class="hero-cd-colon">:</span>
+            <span class="hero-cd-seg"><span class="hero-cd-n">--</span><span class="hero-cd-u">h</span></span>
+            <span class="hero-cd-colon">:</span>
+            <span class="hero-cd-seg"><span class="hero-cd-n">--</span><span class="hero-cd-u">m</span></span>
+            <span class="hero-cd-colon">:</span>
+            <span class="hero-cd-seg"><span class="hero-cd-n">--</span><span class="hero-cd-u">s</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="site-hero-right">
+      <Image
+        src={poe2Logo}
+        alt="Return of the Ancients"
+        width={420}
+        format="webp"
+        quality={92}
+        loading="eager"
+        class="site-hero-poe-logo"
+      />
+    </div>
+  </div>
+</div>
+
+<script>
+  function tickCountdowns(): void {
+    document.querySelectorAll<HTMLElement>('.hero-cd-timer').forEach(timer => {
+      const target = new Date(timer.dataset.target!).getTime();
+      const diff   = target - Date.now();
+      const nums   = timer.querySelectorAll<HTMLElement>('.hero-cd-n');
+      const wrap   = timer.closest<HTMLElement>('.hero-cd');
+
+      if (diff <= 0) {
+        wrap?.classList.add('hero-cd--live');
+        nums.forEach(n => (n.textContent = '00'));
+        return;
+      }
+
+      const pad = (n: number) => String(n).padStart(2, '0');
+      nums[0].textContent = pad(Math.floor(diff / 86_400_000));
+      nums[1].textContent = pad(Math.floor((diff % 86_400_000) / 3_600_000));
+      nums[2].textContent = pad(Math.floor((diff % 3_600_000)  / 60_000));
+      nums[3].textContent = pad(Math.floor((diff % 60_000)     / 1_000));
+    });
+  }
+
+  tickCountdowns();
+  setInterval(tickCountdowns, 1000);
+</script>

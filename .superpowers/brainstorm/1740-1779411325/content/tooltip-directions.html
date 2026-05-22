@@ -1,0 +1,56 @@
+<h2>Tooltip + Interactivity Direction</h2>
+<p class="subtitle">You said tooltips need work and it should feel in-game. Today only Unique items have a real tooltip. Pick the interaction model — click a card to select.</p>
+
+<div class="cards" data-multiselect>
+
+  <div class="card" data-choice="hover-everywhere" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px;background:#0a0807">
+      <div style="border:1px solid #3a2f1c;border-top:2px solid #c9a961;background:linear-gradient(#15110a,#0b0907);padding:10px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.5">
+        <div style="text-align:center;color:#c8966a;font-weight:bold">Sigil of Aldur</div>
+        <div style="text-align:center;color:#7f7f7f;font-size:10px">Greater Rune</div>
+        <hr style="border-color:#3a2f1c;margin:6px 0">
+        <div style="color:#8888ff">+12% Fire Resistance</div>
+        <div style="color:#8888ff">Socketed in Armour</div>
+        <div style="color:#6a6a6a;font-style:italic;margin-top:4px">Bonded: ignites spread</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A · Hover tooltips everywhere</h3>
+      <p>Extend the existing item-tooltip style to <b>every</b> entity — skills, runes, ascendancy nodes, atlas nodes, balance subjects. Hover = instant game-accurate popup with icon, rarity color, exact mods. Quickest to read.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="click-panels" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px;background:#0a0807">
+      <div style="border:1px solid #c9a961;border-radius:4px;background:#100c07;padding:8px">
+        <div style="display:flex;gap:6px;font-size:9px;margin-bottom:6px">
+          <span style="background:#c9a961;color:#000;padding:2px 6px;border-radius:3px">Stats</span>
+          <span style="color:#888;padding:2px 6px">Lore</span>
+          <span style="color:#888;padding:2px 6px">Synergy</span>
+        </div>
+        <div style="height:48px;background:repeating-linear-gradient(45deg,#1a140c,#1a140c 6px,#13100a 6px,#13100a 12px);border-radius:3px"></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B · Click-to-open panels</h3>
+      <p>Click an entity to open a larger in-game-style panel (tabs: stats / lore / synergy), like opening the skill or atlas screen. Richer, more immersive, but slower &amp; more build.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:14px;background:#0a0807">
+      <div style="display:flex;gap:6px;align-items:center;justify-content:center;height:78px">
+        <div style="border:1px solid #3a2f1c;border-top:2px solid #c9a961;background:#13100a;padding:6px;font-size:9px;color:#c8966a">hover ▸ peek</div>
+        <div style="color:#c9a961;font-size:16px">→</div>
+        <div style="border:1px solid #c9a961;background:#13100a;padding:10px 8px;font-size:9px;color:#ede0c8">click ▸ pin/expand 📌</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C · Hybrid (recommended)</h3>
+      <p>Hover = quick tooltip; click = pin/expand into full panel. Plus section-level interactivity: filterable unique grid, interactive atlas, before/after balance toggles. Best feel, biggest scope.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle">Multi-select allowed if you want to mix. Tell me in the terminal which way to go.</p>

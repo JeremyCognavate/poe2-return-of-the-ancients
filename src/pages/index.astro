@@ -1,0 +1,456 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Gallery from '../components/Gallery.astro';
+import ConfidenceBadge from '../components/ConfidenceBadge.astro';
+import UniqueCard from '../components/UniqueCard.astro';
+import { timeline } from '../content/timeline';
+import { ascendancies } from '../content/ascendancies';
+import { endgameMechanics } from '../content/endgame';
+import { uniqueItems } from '../content/uniques';
+import { balanceChanges } from '../content/balance';
+import { qolFeatures } from '../content/qol';
+import { kalguuranSkills, kalguuranContext } from '../content/kalguuran';
+import { runes, runeCount, runicSupports, runicAlloys } from '../content/runes';
+
+const spiritWalker = ascendancies.find(a => a.name === 'Spirit Walker')!;
+const shaman = ascendancies.find(a => a.name === 'Shaman')!;
+
+const oceanExp  = endgameMechanics.find(e => e.id === 'ocean-expedition')!;
+const delirium  = endgameMechanics.find(e => e.id === 'delirium')!;
+const breach    = endgameMechanics.find(e => e.id === 'breach')!;
+const ritual    = endgameMechanics.find(e => e.id === 'ritual')!;
+const abyss     = endgameMechanics.find(e => e.id === 'abyss')!;
+const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
+---
+
+<Layout>
+  <Hero slot="hero" />
+
+  <!-- OVERVIEW -->
+  <Section id="overview" title="Return of the Ancients" subtitle="Path of Exile 2 · Patch 0.5.0">
+    <p>
+      The <strong>Runes of Aldur</strong> league launches <strong>29 May 2026</strong>, with patch notes
+      releasing 21 May 2026. This codex covers all confirmed and datamined content for v0.5.0, sourced
+      from the official reveal stream, ZiggyD Q&amp;A with Jonathan Rogers and Mark Roberts, the official
+      press kit, and PoE2DB.
+    </p>
+    <p style="color:var(--color-text-secondary);font-size:0.9rem;">
+      Confidence tiers:
+      <ConfidenceBadge tier="confirmed" /> official source &nbsp;·&nbsp;
+      <ConfidenceBadge tier="datamine" /> PoE2DB &nbsp;·&nbsp;
+      <ConfidenceBadge tier="inferred" /> reasoned extrapolation &nbsp;·&nbsp;
+      <ConfidenceBadge tier="speculation" /> unverified
+    </p>
+  </Section>
+
+  <!-- TIMELINE -->
+  <Section id="timeline" title="Timeline">
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Event</th><th></th></tr>
+      </thead>
+      <tbody>
+        {timeline.map(e => (
+          <tr>
+            <td style="font-family:var(--font-mono);white-space:nowrap;">{e.date}</td>
+            <td><strong>{e.label}</strong><br /><span style="color:var(--color-text-muted);font-size:0.9rem;">{e.description}</span></td>
+            <td><ConfidenceBadge tier={e.confidence} /></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </Section>
+
+  <!-- RUNES OF ALDUR -->
+  <Section id="league" title="Runes of Aldur" subtitle="League Mechanic" imageFile="Uhtred_the_Stardrinker.png" imageAlt="Uhtred, the Stardrinker">
+    <p>
+      The <strong>Runes of Aldur</strong> league introduces Ezomyte runesmithing as a core crafting system.
+      Collect runes from league encounters and socket them into weapons and armour for layered stat bonuses.
+      A total of <strong>{runeCount.total} runes</strong> <ConfidenceBadge tier={runeCount.confidence} /> are available.
+    </p>
+    <p>
+      Each rune has a <em>base effect</em> and a <em>Bonded effect</em> — Bonded modifiers activate only when
+      conditions are met, or via the Shaman's <strong>Wisdom of the Maji</strong> ascendancy notable.
+    </p>
+
+    <Gallery files={['Ezomyte_Runesmithing.png','Inscribe_Runic_Symbols.png','Aldur_Rune.png','Farrow_RunesofAldur.png']} cols={4} />
+
+    <h3>Key NPCs <ConfidenceBadge tier="confirmed" /></h3>
+    <p>
+      <strong>Farrow</strong> is a young blacksmith who introduces the Ezomyte rune smithing mechanic and
+      serves as the player's primary guide throughout the league. He maintains a <em>Rune Crafting Book</em>
+      that records all discovered rune options, removing the need to memorise recipes. Farrow later meets
+      <strong>Dannig</strong> (an authentic Kalguuran Rune Smith) and joins the Kalguuran expeditions,
+      merging ancient Ezomyte knowledge with modern Kalguuran techniques.
+    </p>
+    <p>
+      <strong>Alith</strong> is a <strong>Keeper of the Flame</strong> who recruits the player into the order — she does not
+      replace the Keepers.
+    </p>
+
+    <h3>Crafting Masters <ConfidenceBadge tier="confirmed" /></h3>
+    <div class="npc-row">
+      {[
+        { file: 'Master_Doryani.jpg',  name: 'Doryani',  role: 'Eternal Empire' },
+        { file: 'Master_Hilda.jpg',    name: 'Hilda',    role: 'Mercenary' },
+        { file: 'Master_Jado.jpg',     name: 'Jado',     role: 'Kalguuran' },
+        { file: 'ElderMadox.png',      name: 'Madox',    role: 'Elder / Boss' },
+      ].map(npc => (
+        <div class="npc-portrait">
+          <Gallery files={[npc.file]} cols={2} />
+          <span class="npc-portrait-name">{npc.name}</span>
+          <span class="npc-portrait-role">{npc.role}</span>
+        </div>
+      ))}
+    </div>
+
+    <h3>Runic Alloys (Reforging Currency)</h3>
+    <div style="display:grid;gap:0.6rem;margin-bottom:0.5rem;">
+      {runicAlloys.map(a => (
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;">
+          <div style="min-width:0;flex:1;">
+            <span style="color:var(--color-text-primary);font-weight:600;">{a.name}</span>
+            <ConfidenceBadge tier={a.confidence} />
+            <span style="color:var(--color-text-secondary);"> — {a.effect}</span>
+            {a.note && <span style="display:block;font-size:0.78rem;color:var(--color-text-muted);margin-top:0.15rem;">⚠ {a.note}</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h3>Special Runes</h3>
+    <div class="card" style="margin-bottom:0.75rem;">
+      <strong style="color:var(--color-gold-light);">Olroth's Legacy</strong> <ConfidenceBadge tier="confirmed" />
+      <p style="margin:0.5rem 0 0;color:var(--color-text-secondary);">Destroy a unique item to extract its unique rune. The rune can be traded or socketed — major crafting economy mechanic.</p>
+    </div>
+    <div class="card">
+      <strong style="color:var(--color-gold-light);">Masterwork Rune</strong> <ConfidenceBadge tier="confirmed" />
+      <p style="margin:0.5rem 0 0;color:var(--color-text-secondary);">Upgrades a rune past its normal cap. Tradeable.</p>
+    </div>
+
+    <h3>Weapon Leech Runes <ConfidenceBadge tier="confirmed" /></h3>
+    <table>
+      <thead>
+        <tr><th>Rune</th><th>Martial Weapon</th><th>Wand / Staff</th><th>Armour</th></tr>
+      </thead>
+      <tbody>
+        {runes.filter(r => r.tier !== 'special').map(r => (
+          <tr>
+            <td style="font-family:var(--font-mono);font-size:0.85rem;">{r.name}</td>
+            <td style="font-size:0.85rem;">{r.weaponEffect}</td>
+            <td style="font-size:0.85rem;">{r.wandOrStaffEffect}</td>
+            <td style="font-size:0.85rem;">{r.armourEffect}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <h3>Runic Support Gems</h3>
+    {runicSupports.map(s => (
+      <div class="card" style="margin-bottom:0.75rem;">
+        <strong style="color:var(--color-gold-light);">{s.name}</strong> <ConfidenceBadge tier={s.confidence} />
+        <p style="margin:0.5rem 0 0;color:var(--color-text-secondary);">{s.description}</p>
+      </div>
+    ))}
+
+    <h3>Idols</h3>
+    <p>
+      <strong>Idols</strong> are Augments fashioned by the Azmeri — socketable and equippable.
+      The Spirit Walker's <strong>Idolatry</strong> notable grants bonuses per equipped Idol.
+      The Shaman's <strong>Wisdom of the Maji</strong> unlocks Bonded modifiers on both Runes and Idols.
+      <ConfidenceBadge tier="confirmed" />
+    </p>
+  </Section>
+
+  <!-- KALGUURAN SKILLS -->
+  <Section id="kalguuran-skills" title="Kalguuran Skills" subtitle={`${kalguuranContext.totalNewSkills} new skills — Runic Ward as a resource`} imageFile="Runes_SkillGem.png" imageAlt="Kalguuran skill gem">
+    <p style="color:var(--color-text-secondary);">
+      {kalguuranContext.loreNote}
+    </p>
+    <p style="color:var(--color-text-muted);font-size:0.875rem;">
+      <ConfidenceBadge tier={kalguuranContext.confidence} /> {kalguuranContext.totalNewSkills} Kalguuran skills confirmed.
+      The 4 skills below have detailed pre-launch data — full skill list and stats available in patch notes (21 May 2026).
+    </p>
+    <Gallery files={['Ezomyte_Runesmithing_2.png','Bodach-Cinematic.png']} cols={2} />
+    {kalguuranSkills.map(skill => (
+      <div class="card" style="margin-bottom:1rem;">
+        <div style="display:flex;align-items:baseline;gap:0.75rem;flex-wrap:wrap;">
+          <h4 style="margin:0;">{skill.name}</h4>
+          <ConfidenceBadge tier={skill.confidence} />
+          <span style="font-family:var(--font-mono);font-size:0.75rem;color:var(--color-text-muted);">{skill.tags.join(' · ')}</span>
+        </div>
+        <div style="font-family:var(--font-mono);font-size:0.8rem;color:var(--color-gold-dim);margin:0.4rem 0;">
+          Cost: {skill.cost}
+          {skill.castTime && ` · Cast: ${skill.castTime}`}
+          {skill.cooldown && ` · CD: ${skill.cooldown}`}
+        </div>
+        <p style="color:var(--color-text-secondary);margin:0.5rem 0;">{skill.description}</p>
+        <ul style="margin:0;padding-left:1.25rem;color:var(--color-text-muted);font-size:0.85rem;">
+          {skill.keyStats.map(s => <li>{s}</li>)}
+        </ul>
+      </div>
+    ))}
+  </Section>
+
+  <!-- SPIRIT WALKER -->
+  <Section id="spirit-walker" title="Spirit Walker" subtitle="Huntress Ascendancy · New in 0.5" imageFile="Spiritwalker_Ascendancy_Art.png" imageAlt="Spirit Walker ascendancy art">
+    <p>
+      The <strong>Spirit Walker</strong> is the second Huntress ascendancy, built around three Azmeri
+      companion spirits: <span class="wisp-owl">Owl</span>, <span class="wisp-stag">Stag</span>, and
+      <span class="wisp-bear">Bear</span>. Each spirit type has its own notable and enhancement node.
+      <strong>Sylvan's Effigy</strong> removes the one-companion-per-type cap and adds a Wolf companion.
+    </p>
+
+    <Gallery files={['SpiritWalker_Stag.png','SpiritWalker_Bear.png']} cols={2} />
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.5rem;">
+      {spiritWalker.nodes.filter(n => n.type === 'notable').map(node => (
+        <div class="card">
+          <div style="display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.5rem;">
+            <strong style={`color:${node.path === 'owl' ? 'var(--color-wisp-owl)' : node.path === 'stag' ? 'var(--color-wisp-stag)' : node.path === 'bear' ? 'var(--color-wisp-bear)' : 'var(--color-gold-light)'}`}>
+              {node.name}
+            </strong>
+            <ConfidenceBadge tier={node.confidence} />
+          </div>
+          <ul style="margin:0;padding-left:1.25rem;color:var(--color-text-secondary);font-size:0.9rem;">
+            {node.stats.map(s => <li>{s}</li>)}
+          </ul>
+          {node.note && <p style="margin:0.4rem 0 0;font-size:0.78rem;color:var(--color-conf-datamine);">⚠ {node.note}</p>}
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- SHAMAN -->
+  <Section id="shaman" title="Shaman" subtitle="Druid Ascendancy · New in 0.5" imageFile="GenesisTreeCinematic.png" imageAlt="Genesis Tree — Shaman homeland">
+    <p>
+      The <strong>Shaman</strong> ascendancy channels Rage and elemental adaptation. It synergises with the
+      Runes of Aldur league via <strong>Wisdom of the Maji</strong>, which unlocks Bonded modifiers on Runes and Idols.
+    </p>
+    <Gallery files={['GenesisTree_Crafting.png','Aldur_SpiderCinematic.png']} cols={2} />
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem;">
+      {shaman.nodes.filter(n => n.type === 'notable').map(node => (
+        <div class="card">
+          <div style="display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.5rem;">
+            <strong style="color:var(--color-gold-light);">{node.name}</strong>
+            <ConfidenceBadge tier={node.confidence} />
+          </div>
+          <ul style="margin:0;padding-left:1.25rem;color:var(--color-text-secondary);font-size:0.9rem;">
+            {node.stats.map(s => <li>{s}</li>)}
+          </ul>
+          {node.note && <p style="margin:0.4rem 0 0;font-size:0.78rem;color:var(--color-conf-datamine);">⚠ {node.note}</p>}
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- ENDGAME -->
+  <Section id="endgame" title="Endgame" subtitle="New systems, reworks, and pinnacle bosses" imageFile="Fortress_Atlas.png" imageAlt="Atlas endgame fortress">
+    <p>
+      0.5.0 delivers the most expansive endgame of any PoE2 launch to date: a 400+ node Atlas passive tree,
+      four reworked league mechanics each with new or reworked pinnacle bosses, a brand-new endgame activity
+      (Ocean Expedition), and the first-ever challenge system in Path of Exile 2.
+    </p>
+    <Gallery files={['Fortress_Atlas_2.png','Masters_Cinematic.jpg']} cols={2} />
+
+    <h3>Mechanics at a Glance <ConfidenceBadge tier="confirmed" /></h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:0.75rem;margin-bottom:1.5rem;">
+      <div class="card">
+        <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.4rem;">
+          <strong style="color:var(--color-gold-light);">Ocean Expedition</strong>
+          <span style="font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;color:#43a047;letter-spacing:0.08em;">New</span>
+        </div>
+        <p style="margin:0;color:var(--color-text-secondary);font-size:0.875rem;">
+          Collect <strong>50 Runic Splinters</strong> → enter the <strong>Kalguuran Tomb</strong>.
+          Pinnacle: <strong>Uhtred, the Stardrinker</strong>. 9 expedition area variants.
+        </p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.4rem;">
+          <strong style="color:var(--color-gold-light);">Delirium — The Raven &amp; the Hare</strong>
+          <span style="font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;color:#ff9800;letter-spacing:0.08em;">Rework</span>
+        </div>
+        <p style="margin:0;color:var(--color-text-secondary);font-size:0.875rem;">
+          Depth bar, purple and red mirror shards, <strong>Grand Mirror</strong> fruit crafting.
+          Pinnacle: <strong>Tangmazu</strong> → drops Reliquary Key.
+          20+ instilled notables, Potent Emotions jewels.
+        </p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.4rem;">
+          <strong style="color:var(--color-gold-light);">Breach — Waking the Dreamer</strong>
+          <span style="font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;color:#ff9800;letter-spacing:0.08em;">Rework</span>
+        </div>
+        <p style="margin:0;color:var(--color-text-secondary);font-size:0.875rem;">
+          Tul &amp; Esh now act as <em>gatekeepers</em> to pinnacle <strong>Xesht</strong>.
+          Breach Splinters stack to 300.
+        </p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.4rem;">
+          <strong style="color:var(--color-gold-light);">Ritual — An Audience with the King</strong>
+          <span style="font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;color:#ff9800;letter-spacing:0.08em;">Rework</span>
+        </div>
+        <p style="margin:0;color:var(--color-text-secondary);font-size:0.875rem;">
+          Fragment converts to <strong>100 Petition Splinters</strong>.
+          Boss: <strong>The King's Bride</strong>.
+        </p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.4rem;">
+          <strong style="color:var(--color-gold-light);">Abyss — Well of Souls</strong>
+          <span style="font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;color:#ff9800;letter-spacing:0.08em;">Rework</span>
+        </div>
+        <p style="margin:0;color:var(--color-text-secondary);font-size:0.875rem;">
+          Pinnacle <strong>Kulemak</strong> summons Amanamu, Kurgal &amp; Ulaman.
+          Uber form confirmed. Access: <em>Kulemak's Invitation</em>.
+        </p>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.4rem;">
+          <strong style="color:var(--color-gold-light);">Atlas Passive Tree</strong>
+          <span style="font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;color:#43a047;letter-spacing:0.08em;">New</span>
+        </div>
+        <p style="margin:0;color:var(--color-text-secondary);font-size:0.875rem;">
+          <strong>400+ nodes</strong> — full tree data available in patch notes (21 May 2026).
+        </p>
+      </div>
+    </div>
+
+    {(() => {
+      const ch = endgameMechanics.find(e => e.id === 'challenges')!;
+      return (
+        <div class="card">
+          <strong style="color:var(--color-gold-light);">Challenges</strong> <ConfidenceBadge tier={ch.confidence} />
+          <ul style="margin:0.5rem 0 0;padding-left:1.25rem;color:var(--color-text-secondary);">
+            {ch.details.map(d => <li>{d}</li>)}
+          </ul>
+        </div>
+      );
+    })()}
+  </Section>
+
+  <!-- OCEAN EXPEDITION -->
+  <Section id="ocean-expedition" title="Ocean Expedition" subtitle={oceanExp.shortDesc} imageFile="Uhtred_Boss_Gameplay.png" imageAlt="Uhtred the Stardrinker boss encounter">
+    <p><ConfidenceBadge tier={oceanExp.confidence} /></p>
+    <ul style="color:var(--color-text-secondary);">
+      {oceanExp.details.map(d => <li>{d}</li>)}
+    </ul>
+    <h4>Bosses</h4>
+    <Gallery files={['Uhtred_the_Stardrinker.png']} cols={2} />
+    <ul style="color:var(--color-text-secondary);">
+      {oceanExp.bosses?.map(b => <li>{b}</li>)}
+    </ul>
+    {oceanExp.note && <p style="color:var(--color-conf-datamine);font-size:0.85rem;">⚠ {oceanExp.note}</p>}
+  </Section>
+
+  <!-- DELIRIUM -->
+  <Section id="delirium" title="Delirium — The Raven and the Hare" subtitle={delirium.shortDesc} imageFile="Delirium_RavenTricksterCinematic.png" imageAlt="Delirium — The Raven Trickster">
+    <p><ConfidenceBadge tier={delirium.confidence} /></p>
+    <ul style="color:var(--color-text-secondary);">
+      {delirium.details.map(d => <li>{d}</li>)}
+    </ul>
+    {delirium.bosses && <p><strong>Pinnacle:</strong> {delirium.bosses.join(', ')}</p>}
+    <Gallery files={['Delirium_Encounter.png','Delirium_Gameplay.png','Delirium_Twinned_Boss.png']} cols={3} />
+  </Section>
+
+  <!-- BREACH -->
+  <Section id="breach" title="Breach — Waking the Dreamer" subtitle={breach.shortDesc} imageFile="Breach_EshCinematic.png" imageAlt="Breach — Esh cinematic">
+    <p><ConfidenceBadge tier={breach.confidence} /></p>
+    <ul style="color:var(--color-text-secondary);">
+      {breach.details.map(d => <li>{d}</li>)}
+    </ul>
+    <Gallery files={['Breach_Monastery.png','Breach_Tree.png','Breach_Egg.png']} cols={3} />
+    <table style="margin-top:1rem;">
+      <thead><tr><th>Boss</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td>Tul</td><td>Gatekeeper to Xesht</td></tr>
+        <tr><td>Esh</td><td>Gatekeeper to Xesht</td></tr>
+        <tr><td>Xesht</td><td>Pinnacle boss</td></tr>
+        <tr><td>Marshal of Xesht</td><td>Elite Hiveborn — drops Wombgifts</td></tr>
+      </tbody>
+    </table>
+    <div class="card" style="margin-top:1rem;">
+      <strong style="color:var(--color-gold-light);">Genesis Tree Crafting</strong> <ConfidenceBadge tier="confirmed" />
+      <p style="margin:0.5rem 0 0;color:var(--color-text-secondary);">
+        Hiveborn enemies drop <strong>Wombgifts</strong>. Deposit them into the <strong>Genesis Tree</strong>
+        and fertilise with <strong>Hiveblood</strong> to birth random rare jewellery (amulets, belts, rings) or
+        eventually Breachstones. Atlas nodes let you influence which Wombgift types drop.
+      </p>
+    </div>
+  </Section>
+
+  <!-- RITUAL -->
+  <Section id="ritual" title="Ritual — An Audience with the King" subtitle={ritual.shortDesc} imageFile="Aoife_Ritual.png" imageAlt="Aoife performing the Ritual">
+    <p><ConfidenceBadge tier={ritual.confidence} /></p>
+    <ul style="color:var(--color-text-secondary);">
+      {ritual.details.map(d => <li>{d}</li>)}
+    </ul>
+    <Gallery files={['Aoife_Ritual_2.png','Ritual_Effigy.png']} cols={2} />
+    {ritual.note && <p style="color:var(--color-conf-datamine);font-size:0.85rem;">⚠ {ritual.note}</p>}
+  </Section>
+
+  <!-- ABYSS -->
+  <Section id="abyss" title="Abyss — Well of Souls" subtitle={abyss.shortDesc} imageFile="Remnant.png" imageAlt="Abyss Remnant creature">
+    <p><ConfidenceBadge tier={abyss.confidence} /></p>
+    <ul style="color:var(--color-text-secondary);">
+      {abyss.details.map(d => <li>{d}</li>)}
+    </ul>
+    <div class="card">
+      <strong>Access:</strong> {abyss.access}
+    </div>
+  </Section>
+
+  <!-- ATLAS -->
+  <Section id="atlas" title="Atlas Passive Tree" subtitle={atlas.details[0]} imageFile="Atlas_Passive_Tree.png" imageAlt="Atlas passive skill tree">
+    <p><ConfidenceBadge tier="confirmed" /> Full tree node data unavailable until patch notes (21 May 2026).</p>
+    <Gallery files={['Atlas_Regions_1.png','Atlas_Regions_2.png','Atlas_Regions_3.png']} cols={3} />
+    <Gallery files={['AtlasPassiveNode1.jpg','AtlasPassiveNode2.jpg','AtlasPassiveNode3.jpg']} cols={3} />
+  </Section>
+
+  <!-- UNIQUE ITEMS -->
+  <Section id="uniques" title="Unique Items" subtitle={`${uniqueItems.length} items — hover any card for the full PoE-style tooltip`} imageFile="Immortal_Son_2.png" imageAlt="The Immortal Son">
+    <p style="color:var(--color-text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
+      Stats sourced from PoE2DB. <ConfidenceBadge tier="datamine" /> entries are pre-launch and may shift in the patch notes (21 May 2026).
+    </p>
+    <div class="unique-grid">
+      {uniqueItems.map(item => <UniqueCard item={item} />)}
+    </div>
+  </Section>
+
+  <!-- BALANCE -->
+  <Section id="balance" title="Balance & Reworks">
+    {balanceChanges.map(change => (
+      <div class="card" style="margin-bottom:1rem;">
+        <div style="display:flex;align-items:baseline;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.5rem;">
+          <span style={`font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;padding:0.1em 0.5em;border-radius:3px;background:${change.category === 'nerf' ? 'color-mix(in srgb,#e53935 18%,transparent)' : change.category === 'buff' ? 'color-mix(in srgb,#43a047 18%,transparent)' : 'color-mix(in srgb,#ff9800 18%,transparent)'};color:${change.category === 'nerf' ? '#e53935' : change.category === 'buff' ? '#43a047' : '#ff9800'};`}>
+            {change.category}
+          </span>
+          <strong style="color:var(--color-gold-light);">{change.subject}</strong>
+          <ConfidenceBadge tier={change.confidence} />
+        </div>
+        <p style="color:var(--color-text-secondary);margin:0 0 0.5rem;">{change.summary}</p>
+        <ul style="margin:0;padding-left:1.25rem;color:var(--color-text-muted);font-size:0.875rem;">
+          {change.details.map(d => <li>{d}</li>)}
+        </ul>
+        {change.note && <p style="margin:0.4rem 0 0;font-size:0.8rem;color:var(--color-conf-datamine);">⚠ {change.note}</p>}
+      </div>
+    ))}
+  </Section>
+
+  <!-- QOL -->
+  <Section id="qol" title="QoL Features" imageFile="Build_Planner.png" imageAlt="Official Build Planner">
+    <Gallery files={['Atlas_Search_QoL.png']} cols={2} />
+    {qolFeatures.map(f => (
+      <div class="card" style="margin-bottom:1rem;">
+        <div style="display:flex;align-items:baseline;gap:0.75rem;margin-bottom:0.5rem;">
+          <strong style="color:var(--color-gold-light);">{f.name}</strong>
+          <ConfidenceBadge tier={f.confidence} />
+        </div>
+        <p style="color:var(--color-text-secondary);margin:0;">{f.description}</p>
+      </div>
+    ))}
+  </Section>
+</Layout>

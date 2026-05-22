@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+
+interface Props {
+  files: string[];
+  /** Optional caption shown below the row */
+  caption?: string;
+  /** Force a column count; if omitted, auto-fit by min width */
+  cols?: 2 | 3 | 4;
+}
+
+const { files, caption, cols } = Astro.props;
+
+type ImageModule = { default: ImageMetadata };
+const allImages = import.meta.glob<ImageModule>('../assets/images/*.{png,jpg,jpeg,webp,avif}');
+
+const images = (await Promise.all(
+  files.map(async (f) => {
+    const loader = allImages[`../assets/images/${f}`];
+    return loader ? (await loader()).default : null;
+  })
+)).filter(Boolean) as ImageMetadata[];
+---
+
+{images.length > 0 && (
+  <figure class="gallery-figure">
+    <div class={`gallery${cols ? ` gallery-${cols}col` : ''}`}>
+      {images.map((img, i) => (
+        <a
+          href={img.src}
+          target="_blank"
+          rel="noopener"
+          class="gallery-link"
+          aria-label="Open full-size image"
+        >
+          <Image
+            src={img}
+            alt=""
+            widths={[480, 800, 1200]}
+            sizes={cols ? `(max-width: 640px) 100vw, ${Math.round(100 / cols)}vw` : '(max-width: 640px) 100vw, 33vw'}
+            loading="lazy"
+            decoding="async"
+            format="webp"
+            quality={82}
+            class="gallery-img"
+          />
+        </a>
+      ))}
+    </div>
+    {caption && <figcaption class="gallery-caption">{caption}</figcaption>}
+  </figure>
+)}

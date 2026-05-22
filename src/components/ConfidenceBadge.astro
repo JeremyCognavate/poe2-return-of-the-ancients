@@ -1,0 +1,17 @@
+---
+import type { ConfidenceTier } from '../content/sources';
+
+interface Props {
+  tier: ConfidenceTier;
+}
+
+const { tier } = Astro.props;
+const labels: Record<ConfidenceTier, string> = {
+  confirmed: 'Confirmed',
+  datamine: 'Datamine',
+  inferred: 'Inferred',
+  speculation: 'Speculation',
+};
+---
+
+<span class={`badge badge-${tier}`}>{labels[tier]}</span>

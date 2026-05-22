@@ -1,0 +1,10 @@
+dist/
+node_modules/
+.astro/
+.env
+.DS_Store
+_press-kit/
+# Large source images are not committed — deploy via wrangler direct-upload (npm run deploy)
+# src/assets is kept locally but excluded from git to avoid 450MB+ blob commits
+src/assets/images/
+src/assets/uniques/

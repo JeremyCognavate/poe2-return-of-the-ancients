@@ -1,0 +1,94 @@
+---
+import Sidebar from '../components/Sidebar';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Blood of Mages — PoE2 0.5 Codex',
+  description = 'Single-page reference codex for Path of Exile 2 patch 0.5.0 "Return of the Ancients"',
+} = Astro.props;
+
+const hasHero = Astro.slots.has('hero');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/png" href="/images/Blood of Mages Logo.png" />
+  </head>
+  <body>
+    <div class={`layout${hasHero ? ' layout--has-hero' : ''}`}>
+      <!-- Header -->
+      <header class="layout-header">
+        <img
+          src="/images/Blood of Mages Logo.png"
+          alt="Blood of Mages"
+          style="height:2.5rem;width:auto;"
+        />
+        <div>
+          <span style="font-family:var(--font-display);font-size:1.2rem;color:var(--color-gold-primary);font-weight:600;">Blood of Mages</span>
+          <span style="font-family:var(--font-mono);font-size:0.7rem;color:var(--color-text-muted);margin-left:0.75rem;">PoE2 v0.5.0 · Return of the Ancients</span>
+        </div>
+      </header>
+
+      <!-- Full-width hero slot -->
+      {hasHero && (
+        <div class="layout-hero">
+          <slot name="hero" />
+        </div>
+      )}
+
+      <!-- Sidebar -->
+      <aside class="layout-sidebar">
+        <Sidebar client:load />
+      </aside>
+
+      <!-- Main content -->
+      <main class="layout-main">
+        <slot />
+      </main>
+    </div>
+
+    <script>
+      const toggle = document.querySelector('.mobile-nav-toggle') as HTMLButtonElement | null;
+      const sidebar = document.querySelector('.layout-sidebar') as HTMLElement | null;
+      if (toggle && sidebar) {
+        toggle.style.display = 'block';
+        toggle.addEventListener('click', () => {
+          sidebar.classList.toggle('open');
+        });
+      }
+
+      // Horizontal flip: only changes on resize, not scroll
+      const TT_W = 372;
+      function updateHorizFlip(): void {
+        const vw = window.innerWidth;
+        (document.querySelectorAll('.unique-wrap') as NodeListOf<HTMLElement>).forEach(wrap => {
+          wrap.classList.toggle('tooltip-left', wrap.getBoundingClientRect().right + TT_W > vw);
+        });
+      }
+      updateHorizFlip();
+      window.addEventListener('resize', updateHorizFlip, { passive: true });
+
+      // Vertical flip: computed at hover time (card must be in viewport for correct rect)
+      (document.querySelectorAll('.unique-wrap') as NodeListOf<HTMLElement>).forEach(wrap => {
+        wrap.addEventListener('mouseenter', () => {
+          const rect = wrap.getBoundingClientRect();
+          const tt  = wrap.querySelector('.unique-tooltip') as HTMLElement | null;
+          const ttH = tt ? tt.offsetHeight : 480;
+          const vh  = window.innerHeight;
+          // Flip above only if: tooltip overflows bottom AND there's room above the card
+          wrap.classList.toggle('tooltip-above', rect.bottom + ttH > vh && rect.top >= ttH);
+        });
+      });
+    </script>
+  </body>
+</html>
