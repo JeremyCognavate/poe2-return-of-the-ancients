@@ -1,0 +1,26 @@
+---
+import { patchNotes, PATCH_NOTE_CATEGORIES } from '../content/index.js';
+import PatchNotesFilter from './PatchNotesFilter.tsx';
+---
+
+<div class="patch-notes-intro">
+  <p>
+    Official patch notes for <strong>Content Update 0.5.0 — Return of the Ancients</strong>,
+    released 2026-05-22. Source:
+    <a
+      href="https://www.pathofexile.com/forum/view-thread/3932540"
+      target="_blank"
+      rel="noopener"
+    >pathofexile.com</a>.
+  </p>
+  <p>
+    <span class="badge badge-confirmed">Confirmed</span> All entries sourced directly from
+    official patch notes.
+  </p>
+</div>
+
+<PatchNotesFilter
+  sections={patchNotes}
+  categories={PATCH_NOTE_CATEGORIES}
+  client:load
+/>

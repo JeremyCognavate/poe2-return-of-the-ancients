@@ -13,6 +13,7 @@ import { balanceChanges } from '../content/balance';
 import { qolFeatures } from '../content/qol';
 import { kalguuranSkills, kalguuranContext } from '../content/kalguuran';
 import { runes, runeCount, runicSupports, runicAlloys } from '../content/runes';
+import PatchNotesSection from '../components/PatchNotesSection.astro';
 
 const spiritWalker = ascendancies.find(a => a.name === 'Spirit Walker')!;
 const shaman = ascendancies.find(a => a.name === 'Shaman')!;
@@ -452,5 +453,14 @@ const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
         <p style="color:var(--color-text-secondary);margin:0;">{f.description}</p>
       </div>
     ))}
+  </Section>
+
+  <!-- PATCH NOTES -->
+  <Section
+    id="patch-notes"
+    title="Patch Notes"
+    subtitle="Content Update 0.5.0 — Official changes for the Return of the Ancients update."
+  >
+    <PatchNotesSection />
   </Section>
 </Layout>

@@ -22,6 +22,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'uniques', label: 'Unique Items' },
   { id: 'balance', label: 'Balance & Reworks' },
   { id: 'qol', label: 'QoL Features' },
+  { id: 'patch-notes', label: 'Patch Notes' },
 ];
 
 export default function Sidebar() {
