@@ -694,61 +694,7 @@ tr:hover td {
   border: 1px solid color-mix(in srgb, var(--color-wisp-bear) 38%, transparent);
 }
 
-/* ── PoE-style item tooltip (popup) ───────────────────────────────────── */
-.unique-tooltip {
-  position: absolute;
-  top: 0;
-  left: calc(100% + 12px);
-  width: 360px;
-  max-width: 95vw;
-  background: linear-gradient(180deg, #1c150b 0%, #0e0a05 100%);
-  border: 1px solid #6e4f1c;
-  border-radius: 4px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.85), 0 0 24px rgba(175,96,37,0.20);
-  padding: 0;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: #d2c997;
-  z-index: 100;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition: opacity 0.15s, visibility 0.15s;
-}
 
-.unique-wrap:hover .unique-tooltip,
-.unique-wrap:focus-within .unique-tooltip {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-}
-
-/* JS sets .tooltip-left on wraps whose tooltip would overflow the right edge */
-.unique-wrap.tooltip-left .unique-tooltip {
-  left: auto;
-  right: calc(100% + 12px);
-}
-
-/* JS sets .tooltip-above on wraps whose tooltip would overflow the bottom edge */
-.unique-wrap.tooltip-above .unique-tooltip {
-  top: auto;
-  bottom: 0;
-}
-
-/* On narrow screens, show tooltip centered below the card */
-@media (max-width: 720px) {
-  .unique-tooltip {
-    left: 50%;
-    right: auto;
-    top: calc(100% + 8px);
-    transform: translateX(-50%);
-    max-width: calc(100vw - 2rem);
-  }
-  .unique-wrap.tooltip-left .unique-tooltip {
-    left: 50%;
-    right: auto;
-  }
-}
 
 .ut-header {
   /* Pure-CSS PoE unique header — CDN hotlinks blocked */
