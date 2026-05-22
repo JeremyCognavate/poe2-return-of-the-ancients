@@ -3,8 +3,8 @@ import { readFileSync } from 'node:fs';
 import { parseRunes } from '../poe2db/parsers/runes.mjs';
 import { parseKalguuranSkills } from '../poe2db/parsers/kalguuran.mjs';
 
-const runesHtml = readFileSync('scripts/__fixtures__/runes-list.html', 'utf8');
-const kalguuranHtml = readFileSync('scripts/__fixtures__/kalguuran-list.html', 'utf8');
+const runesHtml = readFileSync(new URL('../__fixtures__/runes-list.html', import.meta.url), 'utf8');
+const kalguuranHtml = readFileSync(new URL('../__fixtures__/kalguuran-list.html', import.meta.url), 'utf8');
 
 describe('parseRunes', () => {
   it('returns a non-empty array of rune objects', () => {

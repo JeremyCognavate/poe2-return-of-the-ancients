@@ -55,6 +55,8 @@ function nameToSlug(name) {
  * No per-rune effect text is available on this page.
  */
 export function parseRunes(html) {
+  if (!html || typeof html !== 'string') return [];
+
   const $ = cheerio.load(html);
 
   // Find the UL with the most rune anchor links
