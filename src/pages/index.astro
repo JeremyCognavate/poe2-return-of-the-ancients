@@ -138,7 +138,14 @@ const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
       </thead>
       <tbody>
         {runes.filter(r => r.tier !== 'special').map(r => (
-          <tr>
+          <tr
+            data-tooltip-type="rune"
+            data-tooltip-name={r.name}
+            data-tooltip-stats={[r.weaponEffect, r.wandOrStaffEffect, r.armourEffect, r.bondedEffect].filter(Boolean).join('||')}
+            data-tooltip-confidence={r.confidence}
+            data-tooltip-note={r.note || ''}
+            style="cursor:pointer;"
+          >
             <td style="font-family:var(--font-mono);font-size:0.85rem;">{r.name}</td>
             <td style="font-size:0.85rem;">{r.weaponEffect}</td>
             <td style="font-size:0.85rem;">{r.wandOrStaffEffect}</td>
@@ -176,7 +183,18 @@ const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
     </p>
     <Gallery files={['Ezomyte_Runesmithing_2.png','Bodach-Cinematic.png']} cols={2} />
     {kalguuranSkills.map(skill => (
-      <div class="card" style="margin-bottom:1rem;">
+      <div
+        class="card"
+        style="margin-bottom:1rem;cursor:pointer;"
+        data-tooltip-type="skill"
+        data-tooltip-name={skill.name}
+        data-tooltip-tags={skill.tags.join(' · ')}
+        data-tooltip-cost={skill.cost}
+        data-tooltip-description={skill.description}
+        data-tooltip-stats={skill.keyStats.join('||')}
+        data-tooltip-confidence={skill.confidence}
+        data-tooltip-note={''}
+      >
         <div style="display:flex;align-items:baseline;gap:0.75rem;flex-wrap:wrap;">
           <h4 style="margin:0;">{skill.name}</h4>
           <ConfidenceBadge tier={skill.confidence} />
@@ -208,7 +226,15 @@ const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.5rem;">
       {spiritWalker.nodes.filter(n => n.type === 'notable').map(node => (
-        <div class="card">
+        <div
+          class="card"
+          style="cursor:pointer;"
+          data-tooltip-type="node"
+          data-tooltip-name={node.name}
+          data-tooltip-stats={node.stats.join('||')}
+          data-tooltip-confidence={node.confidence}
+          data-tooltip-note={node.note || ''}
+        >
           <div style="display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.5rem;">
             <strong style={`color:${node.path === 'owl' ? 'var(--color-wisp-owl)' : node.path === 'stag' ? 'var(--color-wisp-stag)' : node.path === 'bear' ? 'var(--color-wisp-bear)' : 'var(--color-gold-light)'}`}>
               {node.name}
@@ -233,7 +259,15 @@ const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
     <Gallery files={['GenesisTree_Crafting.png','Aldur_SpiderCinematic.png']} cols={2} />
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem;">
       {shaman.nodes.filter(n => n.type === 'notable').map(node => (
-        <div class="card">
+        <div
+          class="card"
+          style="cursor:pointer;"
+          data-tooltip-type="node"
+          data-tooltip-name={node.name}
+          data-tooltip-stats={node.stats.join('||')}
+          data-tooltip-confidence={node.confidence}
+          data-tooltip-note={node.note || ''}
+        >
           <div style="display:flex;align-items:baseline;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.5rem;">
             <strong style="color:var(--color-gold-light);">{node.name}</strong>
             <ConfidenceBadge tier={node.confidence} />
