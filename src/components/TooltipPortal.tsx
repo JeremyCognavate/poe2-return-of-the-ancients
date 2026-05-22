@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 interface TooltipData {
@@ -166,6 +166,7 @@ export default function TooltipPortal() {
   const [data, setData] = useState<TooltipData | null>(null);
   const [pos, setPos] = useState<Pos>({ top: 0, left: 0, flipX: false, flipY: false });
   const [pinned, setPinned] = useState(false);
+  const pinnedRef = useRef(false);
   const triggerRef = useRef<Element | null>(null);
 
   const findTrigger = (el: EventTarget | null): Element | null => {
@@ -173,60 +174,63 @@ export default function TooltipPortal() {
     return el.closest('[data-tooltip-type]');
   };
 
-  const handleMouseEnter = useCallback((e: MouseEvent) => {
-    if (pinned) return;
-    const trigger = findTrigger(e.target);
-    if (!trigger) return;
-    const d = readData(trigger);
-    if (!d) return;
-    triggerRef.current = trigger;
-    setData(d);
-    setPos(computePos(trigger));
-  }, [pinned]);
-
-  const handleMouseLeave = useCallback((e: MouseEvent) => {
-    if (pinned) return;
-    const trigger = findTrigger(e.target);
-    if (!trigger) return;
-    setData(null);
-    triggerRef.current = null;
-  }, [pinned]);
-
-  const handleClick = useCallback((e: MouseEvent) => {
-    const trigger = findTrigger(e.target);
-    if (trigger) {
-      e.stopPropagation();
+  useEffect(() => {
+    const onMouseOver = (e: MouseEvent) => {
+      if (pinnedRef.current) return;
+      const trigger = findTrigger(e.target);
+      if (!trigger) return;
       const d = readData(trigger);
       if (!d) return;
-      if (pinned && triggerRef.current === trigger) {
-        setPinned(false);
-        setData(null);
-        triggerRef.current = null;
-      } else {
-        triggerRef.current = trigger;
-        setData(d);
-        setPos(computePos(trigger));
-        setPinned(true);
-      }
-    } else {
-      if (pinned) {
-        setPinned(false);
-        setData(null);
-        triggerRef.current = null;
-      }
-    }
-  }, [pinned]);
-
-  useEffect(() => {
-    document.addEventListener('mouseover', handleMouseEnter);
-    document.addEventListener('mouseout', handleMouseLeave);
-    document.addEventListener('click', handleClick);
-    return () => {
-      document.removeEventListener('mouseover', handleMouseEnter);
-      document.removeEventListener('mouseout', handleMouseLeave);
-      document.removeEventListener('click', handleClick);
+      triggerRef.current = trigger;
+      setData(d);
+      setPos(computePos(trigger));
     };
-  }, [handleMouseEnter, handleMouseLeave, handleClick]);
+
+    const onMouseOut = (e: MouseEvent) => {
+      if (pinnedRef.current) return;
+      const trigger = findTrigger(e.target);
+      if (!trigger) return;
+      setData(null);
+      triggerRef.current = null;
+    };
+
+    const onClick = (e: MouseEvent) => {
+      const trigger = findTrigger(e.target);
+      if (trigger) {
+        e.stopPropagation();
+        const d = readData(trigger);
+        if (!d) return;
+        if (pinnedRef.current && triggerRef.current === trigger) {
+          pinnedRef.current = false;
+          setPinned(false);
+          setData(null);
+          triggerRef.current = null;
+        } else {
+          triggerRef.current = trigger;
+          setData(d);
+          setPos(computePos(trigger));
+          pinnedRef.current = true;
+          setPinned(true);
+        }
+      } else {
+        if (pinnedRef.current) {
+          pinnedRef.current = false;
+          setPinned(false);
+          setData(null);
+          triggerRef.current = null;
+        }
+      }
+    };
+
+    document.addEventListener('mouseover', onMouseOver);
+    document.addEventListener('mouseout', onMouseOut);
+    document.addEventListener('click', onClick);
+    return () => {
+      document.removeEventListener('mouseover', onMouseOver);
+      document.removeEventListener('mouseout', onMouseOut);
+      document.removeEventListener('click', onClick);
+    };
+  }, []);
 
   if (!data) return null;
 
@@ -240,7 +244,13 @@ export default function TooltipPortal() {
       {pinned && (
         <button
           className="ptt-close"
-          onClick={e => { e.stopPropagation(); setPinned(false); setData(null); triggerRef.current = null; }}
+          onClick={e => {
+            e.stopPropagation();
+            pinnedRef.current = false;
+            setPinned(false);
+            setData(null);
+            triggerRef.current = null;
+          }}
           aria-label="Close tooltip"
         >✕</button>
       )}
