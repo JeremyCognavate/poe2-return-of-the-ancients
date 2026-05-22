@@ -837,6 +837,8 @@ tr:hover td {
   z-index: 9999;
   width: 380px;
   max-width: calc(100vw - 1rem);
+  max-height: calc(100vh - 1rem);
+  overflow-y: auto;
   pointer-events: none;
   border: 1px solid #3a2f1c;
   border-top: 2px solid var(--color-gold-primary, #c9a961);

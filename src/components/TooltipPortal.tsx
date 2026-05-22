@@ -46,14 +46,14 @@ function computePos(trigger: Element, tooltipW = 380, tooltipH = 420): Pos {
   const vw = window.innerWidth;
   const vh = window.innerHeight;
   const flipX = r.right + tooltipW + 12 > vw;
+  const rawLeft = flipX ? r.left - tooltipW - 12 : r.right + 12;
   const rawTop = r.top;
   const flipY = rawTop + tooltipH > vh && r.top > tooltipH;
-  return {
-    left: flipX ? r.left - tooltipW - 12 : r.right + 12,
-    top:  flipY ? r.bottom - tooltipH    : rawTop,
-    flipX,
-    flipY,
-  };
+  const baseTop = flipY ? r.bottom - tooltipH : rawTop;
+  // Clamp to keep tooltip within viewport (8px margin; CSS max-height handles oversized tooltips)
+  const left = Math.max(8, Math.min(rawLeft, vw - tooltipW - 8));
+  const top  = Math.max(8, Math.min(baseTop, vh - 80));
+  return { left, top, flipX, flipY };
 }
 
 function ConfBadge({ tier }: { tier: string }) {
