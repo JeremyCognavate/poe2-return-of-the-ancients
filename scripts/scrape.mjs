@@ -7,7 +7,7 @@ import { parseRunes } from './poe2db/parsers/runes.mjs';
 import { parseKalguuranSkills } from './poe2db/parsers/kalguuran.mjs';
 import { parseAscendancy } from './poe2db/parsers/ascendancies.mjs';
 import { parseEndgameContent } from './poe2db/parsers/endgame.mjs';
-import { runPatchNotes } from './patchnotes.mjs';
+import { fetchPatchNotes } from './patchnotes.mjs';
 
 const OUT = 'src/content/generated';
 
@@ -18,7 +18,7 @@ async function ensureOutDir() {
 function write(name, data) {
   const path = `${OUT}/${name}.json`;
   writeFileSync(path, JSON.stringify(data, null, 2), 'utf8');
-  console.log(`Written: ${path} (${data.length ?? Object.keys(data).length} records)`);
+  console.log(`Written: ${path} (${data?.length ?? Object.keys(data ?? {}).length} records)`);
 }
 
 async function scrapeUniques() {
@@ -67,28 +67,34 @@ async function scrapeEndgame() {
   write('endgame', mechanics);
 }
 
+async function scrapePatchNotes() {
+  const sections = await fetchPatchNotes();
+  write('patchNotes', sections);
+}
+
 const CATEGORIES = {
   uniques: scrapeUniques,
   runes: scrapeRunes,
   kalguuran: scrapeKalguuran,
   ascendancies: scrapeAscendancies,
   endgame: scrapeEndgame,
-  patchnotes: runPatchNotes,
+  patchnotes: scrapePatchNotes,
 };
 
 async function main() {
   await ensureOutDir();
   const targets = process.argv.slice(2);
-  const toRun = targets.length > 0
-    ? targets.filter(t => t in CATEGORIES)
-    : Object.keys(CATEGORIES);
 
-  if (toRun.length === 0) {
-    console.error('Unknown categories:', targets.join(', '));
-    console.error('Valid:', Object.keys(CATEGORIES).join(', '));
-    process.exit(1);
+  if (targets.length > 0) {
+    const unknown = targets.filter(t => !(t in CATEGORIES));
+    if (unknown.length > 0) {
+      console.error('Unknown categories:', unknown.join(', '));
+      console.error('Valid:', Object.keys(CATEGORIES).join(', '));
+      process.exit(1);
+    }
   }
 
+  const toRun = targets.length > 0 ? targets : Object.keys(CATEGORIES);
   for (const cat of toRun) {
     await CATEGORIES[cat]();
   }

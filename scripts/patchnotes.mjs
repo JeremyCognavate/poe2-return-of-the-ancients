@@ -88,7 +88,8 @@ export function parsePatchNotes(html) {
   return sections;
 }
 
-export async function runPatchNotes() {
+export async function fetchPatchNotes() {
+  console.log('\n=== Patch Notes ===');
   console.log('Fetching patch notes...');
   const html = await fetchCached(PATCH_NOTES_URL, {
     cacheDir: '.cache/patchnotes',
@@ -97,6 +98,11 @@ export async function runPatchNotes() {
   const sections = parsePatchNotes(html);
   const totalEntries = sections.reduce((n, s) => n + s.entries.length, 0);
   console.log(`Parsed ${sections.length} sections, ${totalEntries} entries.`);
+  return sections;
+}
+
+export async function runPatchNotes() {
+  const sections = await fetchPatchNotes();
   mkdirSync(dirname(OUTPUT_PATH), { recursive: true });
   writeFileSync(OUTPUT_PATH, JSON.stringify(sections, null, 2), 'utf8');
   console.log(`Written to ${OUTPUT_PATH}`);
