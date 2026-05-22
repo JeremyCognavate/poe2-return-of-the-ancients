@@ -9,7 +9,7 @@
     "astro": "node node_modules/astro/astro.js",
     "deploy": "npm run build && npx wrangler pages deploy dist/ --project-name blood-of-mages",
     "scrape": "node scripts/scrape.mjs",
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
