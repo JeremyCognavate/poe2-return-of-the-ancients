@@ -1,15 +1,14 @@
-import type { ConfidenceTier } from './sources';
+import type { ConfidenceTier, Sourced } from './sources.js';
+import { SOURCES } from './sources.js';
 
-export interface Rune {
+export interface Rune extends Sourced {
   name: string;
-  tier: 'lesser' | 'base' | 'greater' | 'special';
+  tier: 'lesser' | 'base' | 'greater' | 'special' | 'archaic' | 'warding' | 'aldur';
   socketTarget: 'weapon' | 'armour' | 'any';
   weaponEffect?: string;
   armourEffect?: string;
   wandOrStaffEffect?: string;
   bondedEffect?: string;
-  note?: string;
-  confidence: ConfidenceTier;
 }
 
 export interface RunicSupport {
@@ -24,7 +23,7 @@ export const runeCount = {
   source: 'QA transcript lines 725 and 2223',
 };
 
-export const runes: Rune[] = [
+const handAuthoredRunes: Rune[] = [
   // Weapon leech runes
   {
     name: 'Lesser Body Rune',
@@ -106,6 +105,30 @@ export const runes: Rune[] = [
     note: 'Tradeable item',
   } as Rune & { source: string },
   // Runic Supports
+];
+
+let scrapedRunes: Partial<Rune>[] = [];
+try {
+  const { default: data } = await import('./generated/runes.json', { with: { type: 'json' } });
+  scrapedRunes = data as Partial<Rune>[];
+} catch {
+  // generated/ not available — continue with hand-authored only
+}
+
+const handRuneNames = new Set(handAuthoredRunes.map(r => r.name.toLowerCase()));
+const newScrapedRunes: Rune[] = scrapedRunes
+  .filter(s => s.name && !handRuneNames.has(s.name.toLowerCase()))
+  .map(s => ({
+    name: s.name!,
+    tier: (s.tier ?? 'archaic') as Rune['tier'],
+    socketTarget: 'any' as const,
+    confidence: 'confirmed' as ConfidenceTier,
+    sources: [SOURCES.POE2DB],
+  }));
+
+export const runes: Rune[] = [
+  ...handAuthoredRunes,
+  ...newScrapedRunes,
 ];
 
 export const runicSupports: RunicSupport[] = [

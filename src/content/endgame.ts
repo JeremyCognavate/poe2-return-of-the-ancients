@@ -1,18 +1,17 @@
-import type { ConfidenceTier } from './sources';
+import type { ConfidenceTier, Sourced } from './sources.js';
+import { SOURCES } from './sources.js';
 
-export interface EndgameMechanic {
+export interface EndgameMechanic extends Sourced {
   id: string;
   name: string;
-  category: 'league' | 'existing' | 'new' | 'rework';
+  category: 'league' | 'existing' | 'new' | 'rework' | 'endgame';
   shortDesc: string;
   details: string[];
   bosses?: string[];
   access?: string;
-  confidence: ConfidenceTier;
-  note?: string;
 }
 
-export const endgameMechanics: EndgameMechanic[] = [
+const handAuthoredEndgame: EndgameMechanic[] = [
   {
     id: 'ocean-expedition',
     name: 'Ocean Expedition (Kalguuran Tomb)',
@@ -122,4 +121,52 @@ export const endgameMechanics: EndgameMechanic[] = [
     ],
     confidence: 'confirmed',
   },
+];
+
+interface ScrapedEndgameMechanic {
+  id: string;
+  name: string;
+  category: string;
+  shortDesc: string;
+  details: string[];
+  confidence: ConfidenceTier;
+}
+
+let scrapedEndgame: ScrapedEndgameMechanic[] = [];
+try {
+  const { default: data } = await import('./generated/endgame.json', { with: { type: 'json' } });
+  scrapedEndgame = data as ScrapedEndgameMechanic[];
+} catch {
+  // generated/ not available — continue with hand-authored only
+}
+
+const scrapeEndgameById = new Map(scrapedEndgame.map(s => [s.id, s]));
+const handEndgameIds = new Set(handAuthoredEndgame.map(m => m.id));
+
+const mergedEndgame: EndgameMechanic[] = handAuthoredEndgame.map(hand => {
+  const scraped = scrapeEndgameById.get(hand.id);
+  if (!scraped) return hand;
+  return {
+    ...hand,
+    confidence: 'confirmed' as ConfidenceTier,
+    sources: [...new Set([...(hand.sources ?? []), SOURCES.POE2DB])],
+    // hand-authored details/bosses/access/note always win (preserved via spread)
+  };
+});
+
+const newScrapedEndgame: EndgameMechanic[] = scrapedEndgame
+  .filter(s => !handEndgameIds.has(s.id))
+  .map(s => ({
+    id: s.id,
+    name: s.name,
+    category: (s.category as EndgameMechanic['category']) ?? 'new',
+    shortDesc: s.shortDesc,
+    details: s.details,
+    confidence: 'confirmed' as ConfidenceTier,
+    sources: [SOURCES.POE2DB],
+  }));
+
+export const endgameMechanics: EndgameMechanic[] = [
+  ...mergedEndgame,
+  ...newScrapedEndgame,
 ];

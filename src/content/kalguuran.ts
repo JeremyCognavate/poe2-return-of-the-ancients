@@ -1,17 +1,22 @@
-import type { ConfidenceTier } from './sources';
+import type { ConfidenceTier, Sourced } from './sources.js';
+import { SOURCES } from './sources.js';
 
-export interface KalguuranSkill {
+export interface KalguuranSkill extends Sourced {
   name: string;
+  slug?: string;
+  iconUrl?: string;
   tags: string[];
   cost: string;
   castTime?: string;
   cooldown?: string;
   description: string;
   keyStats: string[];
-  confidence: ConfidenceTier;
 }
 
-export const kalguuranSkills: KalguuranSkill[] = [
+/** Runic Supports that appear in scraped kalguuran.json but are NOT Kalguuran skills */
+const RUNIC_SUPPORT_NAMES = new Set(['Concussive Runes', 'Runic Infusion']);
+
+const handAuthoredKalguuran: KalguuranSkill[] = [
   {
     name: 'Triskelion Cascade',
     tags: ['Spell', 'Buff', 'Duration'],
@@ -62,6 +67,72 @@ export const kalguuranSkills: KalguuranSkill[] = [
     ],
     confidence: 'confirmed',
   },
+];
+
+/** Normalize a name for fuzzy matching: lowercase, strip "Mark of ", strip trailing "s" */
+function normalizeName(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/^mark of\s+/i, '')
+    .replace(/s$/, '')
+    .trim();
+}
+
+interface ScrapedKalguuran {
+  name: string;
+  slug: string;
+  iconUrl: string;
+}
+
+let scrapedKalguuran: ScrapedKalguuran[] = [];
+try {
+  const { default: data } = await import('./generated/kalguuran.json', { with: { type: 'json' } });
+  scrapedKalguuran = (data as ScrapedKalguuran[]).filter(s => !RUNIC_SUPPORT_NAMES.has(s.name));
+} catch {
+  // generated/ not available — continue with hand-authored only
+}
+
+// Build lookup maps for scraper records
+const scrapeByExactName = new Map(scrapedKalguuran.map(s => [s.name.toLowerCase(), s]));
+const scrapeByNormalizedName = new Map(scrapedKalguuran.map(s => [normalizeName(s.name), s]));
+
+function mergeKalguuranSkill(hand: KalguuranSkill): KalguuranSkill {
+  const scrapeRecord =
+    scrapeByExactName.get(hand.name.toLowerCase()) ??
+    scrapeByNormalizedName.get(normalizeName(hand.name));
+  if (!scrapeRecord) return hand;
+  return {
+    ...hand,
+    slug: scrapeRecord.slug,
+    iconUrl: scrapeRecord.iconUrl || undefined,
+    confidence: scrapeRecord ? 'confirmed' : hand.confidence,
+    sources: [...new Set([...(hand.sources ?? []), SOURCES.POE2DB])],
+    // hand-authored description/keyStats/tags/note always win
+  };
+}
+
+const handKalguuranNames = new Set([
+  ...handAuthoredKalguuran.map(h => h.name.toLowerCase()),
+  ...handAuthoredKalguuran.map(h => normalizeName(h.name)),
+]);
+
+const newScrapedKalguuran: KalguuranSkill[] = scrapedKalguuran
+  .filter(s => !handKalguuranNames.has(s.name.toLowerCase()) && !handKalguuranNames.has(normalizeName(s.name)))
+  .map(s => ({
+    name: s.name,
+    slug: s.slug,
+    iconUrl: s.iconUrl || undefined,
+    tags: [],
+    cost: '',
+    description: '',
+    keyStats: [],
+    confidence: 'confirmed' as ConfidenceTier,
+    sources: [SOURCES.POE2DB],
+  }));
+
+export const kalguuranSkills: KalguuranSkill[] = [
+  ...handAuthoredKalguuran.map(mergeKalguuranSkill),
+  ...newScrapedKalguuran,
 ];
 
 export const kalguuranContext = {

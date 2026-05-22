@@ -1,4 +1,5 @@
-import type { ConfidenceTier } from './sources';
+import type { ConfidenceTier, Source, Sourced } from './sources.js';
+import { SOURCES } from './sources.js';
 
 export interface AscendancyNode {
   name: string;
@@ -6,19 +7,29 @@ export interface AscendancyNode {
   path?: 'owl' | 'stag' | 'bear' | 'capstone' | 'independent';
   stats: string[];
   confidence: ConfidenceTier;
+  sources?: Source[];
   note?: string;
 }
 
-export interface Ascendancy {
+export interface Ascendancy extends Sourced {
   name: string;
   baseClass: string;
   isNew: boolean;
   description: string;
   nodes: AscendancyNode[];
-  confidence: ConfidenceTier;
 }
 
-export const ascendancies: Ascendancy[] = [
+/** Normalize node names for matching: lowercase, NFD strip diacritics, straight apostrophes */
+function normalizeNodeName(name: string): string {
+  return name
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '') // strip combining diacritics
+    .replace(/[‘’‚‛]/g, "'") // curly single quotes → straight
+    .replace(/[“”]/g, '"') // curly double quotes → straight
+    .toLowerCase();
+}
+
+const handAuthoredAscendancies: Ascendancy[] = [
   {
     name: 'Spirit Walker',
     baseClass: 'Huntress',
@@ -215,4 +226,101 @@ export const ascendancies: Ascendancy[] = [
       },
     ],
   },
+];
+
+interface ScrapedAscendancyNode {
+  name: string;
+  stats: string[];
+  type: 'notable' | 'small' | 'start';
+  confidence: ConfidenceTier;
+}
+
+interface ScrapedAscendancy {
+  name: string;
+  nodes: ScrapedAscendancyNode[];
+}
+
+let scrapedAscendancies: ScrapedAscendancy[] = [];
+try {
+  const { default: data } = await import('./generated/ascendancies.json', { with: { type: 'json' } });
+  scrapedAscendancies = data as ScrapedAscendancy[];
+} catch {
+  // generated/ not available — continue with hand-authored only
+}
+
+/** Merge scraped nodes into a hand-authored ascendancy */
+function mergeAscendancyNodes(
+  handNodes: AscendancyNode[],
+  scrapedNodes: ScrapedAscendancyNode[],
+): AscendancyNode[] {
+  // Filter out placeholder "?" nodes
+  const validScrapedNodes = scrapedNodes.filter(n => n.name !== '?' && !n.stats.every(s => s === '?'));
+
+  const handByNorm = new Map(handNodes.map(n => [normalizeNodeName(n.name), n]));
+  const result: AscendancyNode[] = [...handNodes];
+
+  for (const sNode of validScrapedNodes) {
+    const key = normalizeNodeName(sNode.name);
+    if (handByNorm.has(key)) {
+      // Upgrade confidence to 'confirmed' for matched nodes
+      const existing = handByNorm.get(key)!;
+      existing.confidence = 'confirmed' as ConfidenceTier;
+      existing.sources = [...new Set([...(existing.sources ?? []), SOURCES.POE2DB])];
+    } else {
+      // Add scraper-only nodes at the end
+      result.push({
+        name: sNode.name,
+        type: sNode.type,
+        stats: sNode.stats,
+        confidence: 'confirmed' as ConfidenceTier,
+        sources: [SOURCES.POE2DB],
+      });
+    }
+  }
+  return result;
+}
+
+const handAscendancyNames = new Set(handAuthoredAscendancies.map(a => a.name.toLowerCase()));
+
+const mergedAscendancies: Ascendancy[] = handAuthoredAscendancies.map(hand => {
+  const scraped = scrapedAscendancies.find(s => s.name.toLowerCase() === hand.name.toLowerCase());
+  if (!scraped) return hand;
+  return {
+    ...hand,
+    confidence: 'confirmed' as ConfidenceTier,
+    sources: [...new Set([...(hand.sources ?? []), SOURCES.POE2DB])],
+    nodes: mergeAscendancyNodes(hand.nodes, scraped.nodes),
+    // note is preserved via spread (hand.note wins)
+  };
+});
+
+// Append scraper-only ascendancies (e.g. Martial Artist)
+const newScrapedAscendancies: Ascendancy[] = scrapedAscendancies
+  .filter(s => !handAscendancyNames.has(s.name.toLowerCase()))
+  .map(s => {
+    const validNodes = s.nodes
+      .filter(n => n.name !== '?' && !n.stats.every(st => st === '?'))
+      .map(n => ({
+        name: n.name,
+        type: n.type,
+        stats: n.stats,
+        confidence: 'confirmed' as ConfidenceTier,
+        sources: [SOURCES.POE2DB] as Source[],
+      }));
+    // Determine baseClass — Martial Artist is the Monk ascendancy
+    const baseClass = s.name === 'Martial Artist' ? 'Monk' : 'Unknown';
+    return {
+      name: s.name,
+      baseClass,
+      isNew: true,
+      description: '',
+      nodes: validNodes,
+      confidence: 'confirmed' as ConfidenceTier,
+      sources: [SOURCES.POE2DB],
+    };
+  });
+
+export const ascendancies: Ascendancy[] = [
+  ...mergedAscendancies,
+  ...newScrapedAscendancies,
 ];
