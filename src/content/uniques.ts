@@ -1,6 +1,7 @@
-import type { ConfidenceTier } from './sources';
+import type { Sourced } from './sources.js';
+import { SOURCES } from './sources.js';
 
-export interface UniqueItem {
+export interface UniqueItem extends Sourced {
   name: string;
   baseType: string;
   itemClass: string;
@@ -13,13 +14,14 @@ export interface UniqueItem {
   flavour?: string;
   /** Filename in src/assets/uniques/ (no path) — undefined if no icon scraped */
   iconFile?: string;
-  confidence: ConfidenceTier;
-  note?: string;
+  /** CDN URL from scraper (Phase 2 tooltips use this) */
+  iconUrl?: string;
   /** Marks items with explicit Spirit Walker / Companion synergy */
   spiritWalkerSynergy?: boolean;
+  // note? and sources? come from Sourced
 }
 
-export const uniqueItems: UniqueItem[] = [
+const handAuthored: UniqueItem[] = [
   // ── Spear ─────────────────────────────────────────────────────
   {
     name: 'The Ordained',
@@ -280,4 +282,46 @@ export const uniqueItems: UniqueItem[] = [
     confidence: 'inferred',
     note: 'Lineage Support item — no PoE2DB page as of 2026-05-10',
   },
+];
+
+let scraped: Partial<UniqueItem>[] = [];
+try {
+  const { default: data } = await import('./generated/uniques.json', { with: { type: 'json' } });
+  scraped = data as Partial<UniqueItem>[];
+} catch {
+  // generated/ not available — continue with hand-authored only
+}
+
+function mergeUnique(hand: UniqueItem, scrapeRecord?: Partial<UniqueItem>): UniqueItem {
+  if (!scrapeRecord) return hand;
+  return {
+    ...hand,
+    confidence: scrapeRecord.confidence === 'confirmed' ? 'confirmed' : hand.confidence,
+    iconUrl: scrapeRecord.iconUrl ?? hand.iconFile,
+    implicits: hand.implicits.length > 0 ? hand.implicits : (scrapeRecord.implicits ?? []),
+    explicits: hand.explicits.length > 0 ? hand.explicits : (scrapeRecord.explicits ?? []),
+    reqLevel: hand.reqLevel ?? scrapeRecord.reqLevel,
+    sources: [...(hand.sources ?? []), SOURCES.POE2DB],
+    note: hand.note, // hand-authored note always preserved
+  };
+}
+
+const scrapeByName = new Map(scraped.map(s => [s.name?.toLowerCase(), s]));
+const handNames = new Set(handAuthored.map(h => h.name.toLowerCase()));
+const scrapedNew: UniqueItem[] = scraped
+  .filter(s => s.name && !handNames.has(s.name.toLowerCase()))
+  .map(s => ({
+    name: s.name!,
+    baseType: s.baseType ?? '',
+    itemClass: 'Unknown',
+    implicits: s.implicits ?? [],
+    explicits: s.explicits ?? [],
+    confidence: 'confirmed',
+    sources: [SOURCES.POE2DB],
+    iconUrl: s.iconUrl,
+  }));
+
+export const uniqueItems: UniqueItem[] = [
+  ...handAuthored.map(h => mergeUnique(h, scrapeByName.get(h.name.toLowerCase()))),
+  ...scrapedNew,
 ];
