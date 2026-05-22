@@ -8,3 +8,12 @@ _press-kit/
 # src/assets is kept locally but excluded from git to avoid 450MB+ blob commits
 src/assets/images/
 src/assets/uniques/
+
+# Scrape cache (re-run pnpm scrape to refresh)
+.cache/
+
+# Brainstorming session
+.superpowers/
+
+# Machine-generated content (run pnpm scrape to regenerate)
+src/content/generated/
