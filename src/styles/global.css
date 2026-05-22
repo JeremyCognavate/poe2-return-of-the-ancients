@@ -1075,3 +1075,72 @@ tr:hover td {
   backdrop-filter: blur(4px);
   padding: 0.6rem 0;
 }
+
+/* ===== Atlas Browser ===== */
+.atlas-browser { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+.atlas-browser-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: sticky;
+  top: 3.5rem;
+  z-index: 10;
+  background: rgba(8, 6, 5, 0.95);
+  backdrop-filter: blur(4px);
+  padding: 0.6rem 0;
+}
+.atlas-browser-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.atlas-node {
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.atlas-node:hover,
+.atlas-node:focus-visible {
+  border-color: var(--color-border-gold);
+  box-shadow: 0 0 0 1px var(--color-border-gold);
+  outline: none;
+}
+.atlas-node-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.atlas-node-head strong { color: var(--color-gold-light); }
+.atlas-node-scale {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+.atlas-node-summary {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.atlas-kind {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.1em 0.45em;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.atlas-kind--core    { background: color-mix(in srgb, #43a047 18%, transparent); color: #43a047; }
+.atlas-kind--master  { background: color-mix(in srgb, #9c27b0 18%, transparent); color: #ce93d8; }
+.atlas-kind--league  { background: color-mix(in srgb, #ff9800 18%, transparent); color: #ff9800; }
