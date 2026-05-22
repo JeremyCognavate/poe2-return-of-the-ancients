@@ -297,11 +297,11 @@ function mergeUnique(hand: UniqueItem, scrapeRecord?: Partial<UniqueItem>): Uniq
   return {
     ...hand,
     confidence: scrapeRecord.confidence === 'confirmed' ? 'confirmed' : hand.confidence,
-    iconUrl: scrapeRecord.iconUrl ?? hand.iconFile,
+    iconUrl: scrapeRecord.iconUrl,
     implicits: hand.implicits.length > 0 ? hand.implicits : (scrapeRecord.implicits ?? []),
     explicits: hand.explicits.length > 0 ? hand.explicits : (scrapeRecord.explicits ?? []),
     reqLevel: hand.reqLevel ?? scrapeRecord.reqLevel,
-    sources: [...(hand.sources ?? []), SOURCES.POE2DB],
+    sources: [...new Set([...(hand.sources ?? []), SOURCES.POE2DB])],
     note: hand.note, // hand-authored note always preserved
   };
 }
@@ -313,7 +313,7 @@ const scrapedNew: UniqueItem[] = scraped
   .map(s => ({
     name: s.name!,
     baseType: s.baseType ?? '',
-    itemClass: 'Unknown',
+    itemClass: s.itemClass ?? 'Unknown',
     implicits: s.implicits ?? [],
     explicits: s.explicits ?? [],
     confidence: 'confirmed',
