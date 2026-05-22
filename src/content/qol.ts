@@ -1,9 +1,11 @@
-import type { ConfidenceTier } from './sources';
+import type { ConfidenceTier, Source } from './sources.js';
+import { SOURCES } from './sources.js';
 
 export interface QoLFeature {
   name: string;
   description: string;
   confidence: ConfidenceTier;
+  sources?: Source[];
   note?: string;
 }
 
@@ -35,3 +37,52 @@ export const qolFeatures: QoLFeature[] = [
     confidence: 'confirmed',
   },
 ];
+
+interface PatchNotesSection {
+  id: string;
+  title: string;
+  category: string;
+  entries: string[];
+}
+
+let patchNotesSections: PatchNotesSection[] = [];
+try {
+  const { default: data } = await import('./generated/patchNotes.json', { with: { type: 'json' } });
+  patchNotesSections = data as PatchNotesSection[];
+} catch {
+  // generated/ not available — continue with hand-authored only
+}
+
+function entryToName(entry: string): string {
+  // Prefer splitting on first '. ' or ': ' if the result is under 60 chars
+  const dotIdx = entry.indexOf('. ');
+  const colonIdx = entry.indexOf(': ');
+  let splitIdx = -1;
+  if (dotIdx !== -1 && (colonIdx === -1 || dotIdx < colonIdx)) {
+    splitIdx = dotIdx;
+  } else if (colonIdx !== -1) {
+    splitIdx = colonIdx;
+  }
+  if (splitIdx > 0 && splitIdx < 60) {
+    return entry.slice(0, splitIdx);
+  }
+  return entry.slice(0, 60).trimEnd();
+}
+
+const handAuthoredNames = new Set(qolFeatures.map(f => f.name.toLowerCase()));
+
+const qolSections = patchNotesSections.filter(s => s.category === 'qol');
+
+for (const section of qolSections) {
+  for (const entry of section.entries) {
+    const name = entryToName(entry);
+    if (handAuthoredNames.has(name.toLowerCase())) continue;
+    qolFeatures.push({
+      name,
+      description: entry,
+      confidence: 'confirmed',
+      sources: [SOURCES.PATCH_NOTES],
+    });
+    handAuthoredNames.add(name.toLowerCase());
+  }
+}

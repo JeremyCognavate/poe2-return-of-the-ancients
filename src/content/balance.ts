@@ -1,4 +1,5 @@
-import type { ConfidenceTier } from './sources';
+import type { ConfidenceTier, Source } from './sources.js';
+import { SOURCES } from './sources.js';
 
 export interface BalanceChange {
   id: string;
@@ -7,6 +8,7 @@ export interface BalanceChange {
   summary: string;
   details: string[];
   confidence: ConfidenceTier;
+  sources?: Source[];
   note?: string;
 }
 
@@ -133,3 +135,35 @@ export const balanceChanges: BalanceChange[] = [
     note: 'QA transcript lines 3877–3880. Reveal transcript lines 627–699.',
   },
 ];
+
+interface PatchNotesSection {
+  id: string;
+  title: string;
+  category: string;
+  entries: string[];
+}
+
+let patchNotesSections: PatchNotesSection[] = [];
+try {
+  const { default: data } = await import('./generated/patchNotes.json', { with: { type: 'json' } });
+  patchNotesSections = data as PatchNotesSection[];
+} catch {
+  // generated/ not available — continue with hand-authored only
+}
+
+const handAuthoredIds = new Set(balanceChanges.map(b => b.id));
+
+const balanceSections = patchNotesSections.filter(s => s.category === 'balance');
+
+for (const section of balanceSections) {
+  if (handAuthoredIds.has(section.id)) continue;
+  balanceChanges.push({
+    id: section.id,
+    category: 'rework',
+    subject: section.title,
+    summary: section.entries[0]?.slice(0, 100) ?? section.title,
+    details: section.entries,
+    confidence: 'confirmed',
+    sources: [SOURCES.PATCH_NOTES],
+  });
+}
