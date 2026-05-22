@@ -2,6 +2,7 @@
 export function stableStringify(v) {
   if (Array.isArray(v)) {
     const items = v.map(stableStringify);
+    // Sort so reordered array elements don't register as phantom changes
     items.sort();
     return `[${items.join(',')}]`;
   }
@@ -9,7 +10,7 @@ export function stableStringify(v) {
     const keys = Object.keys(v).sort();
     return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify(v[k])}`).join(',')}}`;
   }
-  return JSON.stringify(v);
+  return JSON.stringify(v) ?? 'null';
 }
 
 export function diffDatasets(oldArr, newArr, keyField) {
