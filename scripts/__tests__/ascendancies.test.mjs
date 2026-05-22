@@ -22,6 +22,8 @@ describe('parseAscendancy', () => {
     for (const node of result.nodes) {
       expect(node).toHaveProperty('name');
       expect(node).toHaveProperty('stats');
+      expect(Array.isArray(node.stats)).toBe(true);
+      expect(node.stats.length).toBeGreaterThan(0);
     }
   });
 });
@@ -30,7 +32,7 @@ describe('parseEndgameContent', () => {
   it('returns endgame mechanics array', () => {
     const result = parseEndgameContent(versionHtml);
     expect(Array.isArray(result)).toBe(true);
-    expect(result.length).toBeGreaterThan(3);
+    expect(result.length).toBeGreaterThanOrEqual(10);
   });
 
   it('each mechanic has id and name', () => {
@@ -39,5 +41,21 @@ describe('parseEndgameContent', () => {
       expect(m).toHaveProperty('id');
       expect(m).toHaveProperty('name');
     }
+  });
+});
+
+describe('parseAscendancy — edge cases', () => {
+  it('returns empty nodes for empty html', () => {
+    const result = parseAscendancy('', 'Spirit Walker');
+    expect(result.name).toBe('Spirit Walker');
+    expect(result.nodes).toEqual([]);
+  });
+});
+
+describe('parseEndgameContent — edge cases', () => {
+  it('returns empty array for empty html', () => {
+    const result = parseEndgameContent('');
+    expect(Array.isArray(result)).toBe(true);
+    expect(result.length).toBe(0);
   });
 });

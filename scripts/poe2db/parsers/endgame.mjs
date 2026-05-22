@@ -40,9 +40,8 @@ function slugify(text) {
 /**
  * Parse endgame mechanics from the Version_0.5.0 patch notes page.
  *
- * Structure: the page has a `.box-content` div containing a sequence of
- * <h3> headings. Each endgame section heading is immediately followed by a
- * <ul> of bullet-point details.
+ * Structure: the page has multiple `.box-content` divs, each typically
+ * containing one <h3> and one <ul> of bullet-point details.
  *
  * @param {string} html - Full HTML of the version page
  * @returns {Array<{ id: string, name: string, category: string, shortDesc: string, details: string[], confidence: string }>}
@@ -84,6 +83,12 @@ export function parseEndgameContent(html) {
       confidence: 'confirmed',
     });
   });
+
+  if (mechanics.length < ENDGAME_SECTIONS.size) {
+    const found = new Set(mechanics.map(m => m.name));
+    const missing = [...ENDGAME_SECTIONS].filter(s => !found.has(s));
+    console.warn(`[endgame] Missing sections: ${missing.join(', ')}`);
+  }
 
   return mechanics;
 }

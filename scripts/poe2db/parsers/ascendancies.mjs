@@ -11,8 +11,8 @@ import * as cheerio from 'cheerio';
 function splitBrStats($, td) {
   const html = $(td).html() || '';
   return html
-    .split(/<br\s*\/?>/gi)
-    .map(fragment => cheerio.load(fragment).root().text().trim())
+    .split(/<br\s*\/?>/i)
+    .map(s => s.replace(/<[^>]+>/g, '').trim())
     .filter(Boolean);
 }
 
@@ -38,7 +38,9 @@ export function parseAscendancy(html, ascendancyName) {
   // The wiki tab id is derived from the ascendancy name with spaces removed
   // e.g. 'Spirit Walker' -> '#SpiritWalker'
   const tabId = ascendancyName.replace(/\s+/g, '');
-  const tab = $(`#${tabId}`);
+  // Escape CSS-special characters so the selector doesn't throw on unusual names
+  const escaped = tabId.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
+  const tab = $(`#${escaped}`);
 
   // Fall back to searching all .markdown-body tables if the tab is not found
   const searchRoot = tab.length ? tab : $('body');
@@ -67,6 +69,7 @@ export function parseAscendancy(html, ascendancyName) {
       nodes.push({
         name,
         stats,
+        // PoE2DB doesn't distinguish keystones from notables in the table — treat all as notable
         type: 'notable',
         confidence: 'confirmed',
       });
