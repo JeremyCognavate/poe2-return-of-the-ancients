@@ -17,6 +17,8 @@ import { kalguuranSkills, kalguuranContext } from '../content/kalguuran';
 import { runes, runeCount, runicSupports, runicAlloys } from '../content/runes';
 import { atlasTreeGroups } from '../content/atlasNodes';
 import PatchNotesSection from '../components/PatchNotesSection.astro';
+import WhatsNew from '../components/WhatsNew.tsx';
+import { whatsNewEntries } from '../content/whatsnew';
 
 const spiritWalker = ascendancies.find(a => a.name === 'Spirit Walker')!;
 const shaman = ascendancies.find(a => a.name === 'Shaman')!;
@@ -31,6 +33,8 @@ const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
 
 <Layout>
   <Hero slot="hero" />
+
+  <WhatsNew entries={whatsNewEntries} client:load />
 
   <!-- OVERVIEW -->
   <Section id="overview" title="Return of the Ancients" subtitle="Path of Exile 2 · Patch 0.5.0">

@@ -1172,3 +1172,100 @@ tr:hover td {
 .balance-delta--after {
   color: #81c784;
 }
+
+/* ===== What's New Panel ===== */
+.whatsnew {
+  margin: 0 auto 1.5rem;
+  max-width: var(--content-max-width, 860px);
+}
+.whatsnew-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+.whatsnew-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4em;
+  height: 1.4em;
+  padding: 0 0.35em;
+  border-radius: 99px;
+  background: var(--color-conf-confirmed, #43a047);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.whatsnew-chevron {
+  margin-left: auto;
+  font-size: 0.65rem;
+  opacity: 0.6;
+}
+.whatsnew-list {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.whatsnew-date {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin: 0.5rem 0 0.25rem;
+  border-bottom: 1px solid var(--color-border-gold, rgba(200,160,80,0.2));
+  padding-bottom: 0.2rem;
+}
+.whatsnew-entry {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  padding-left: 0.25rem;
+}
+.whatsnew-kind {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+}
+.whatsnew-kind--added   { background: color-mix(in srgb, #43a047 18%, transparent); color: #43a047; }
+.whatsnew-kind--changed { background: color-mix(in srgb, #ff9800 18%, transparent); color: #ff9800; }
+.whatsnew-teaser {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.whatsnew-thumb {
+  width: 120px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.whatsnew-teaser-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.whatsnew-teaser-title {
+  color: var(--color-gold-light);
+  font-weight: 600;
+  text-decoration: none;
+}
+.whatsnew-teaser-title:hover { text-decoration: underline; }
+.whatsnew-teaser-channel {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+.whatsnew-teaser-summary {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
