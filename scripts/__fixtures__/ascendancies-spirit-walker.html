@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="us" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spirit_Walker - PoE2DB, Path of Exile Wiki us</title>
+    <meta name="description" content="path of exile is simply a tool to test your path of building creation">
+    <link rel="alternate" hreflang="en" href="https://poe2db.tw/us/" />
+    <link rel="alternate" hreflang="zh-Hant" href="https://poe2db.tw/tw/" />
+    <link rel="alternate" hreflang="zh-Hans" href="https://poe2db.tw/cn/" />
+        <link href="/favicon2.png" rel="shortcut icon" >
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/jquery.dataTables.min.css" integrity="sha512-1k7mWiTNoyx2XtmI96o+hdjP8nn0f3Z2N4oF/9ZZRgijyV4omsKOXEnqL1gKQNPy2MTSP9rIEWGcH/CInulptA==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-5-theme/1.3.0/select2-bootstrap-5-theme.min.css" integrity="sha512-z/90a5SWiu4MWVelb5+ny7sAayYUfMmdXKEAbpj27PfdkamNdyI3hcjxPxkOPbrXoKIm7r9V2mElt5f1OtVhqA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/tippy.min.css" integrity="sha512-HbPh+j4V7pXprvQMt2dtmK/zCEsUeZWYXRln4sOwmoyHPQAPqy/k9lIquKUyKNpNbDGAY06UdiDHcEkBc72yCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.2.1/sweetalert2.min.css" integrity="sha512-OkYLbkJ4DB7ewvcpNLF9DSFmhdmxFXQ1Cs+XyjMsMMC94LynFJaA9cPXOokugkmZo6O6lwZg+V5dwQMH4S5/3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/modal-video@2.4.6/css/modal-video.min.css" integrity="sha256-nd8IBqNn9uqwZKfZcLIXQcNxk5TjqrxiLx7PzN5PFW0=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css" integrity="sha256-auPoJwk/+RK6KSkib92Dkq1Y5hEkZvKtvSwucs15Skg=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.19.1/video-js.min.css" integrity="sha512-J3tx4ssoARFr4U9VmZmQe2q672q0jUeYizJW3vglkOBTlQ/N6kF3eVqZZzaey/TdIXH69s3HYe2nQwyxK/Emzw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+        <link rel="stylesheet" href="https://cdn.poe2db.tw/css/stdtheme.0f57826494f96f38.css" />
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js" integrity="sha512-HvOjJrdwNpDbkGJIG2ZNqDlVqMo77qbs4Me4cah0HoDrfhrbA+8SBlZn1KrvAQw7cILLPFJvdwIgphzQmMm+Pw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js" integrity="sha512-qzgd5cYSZcosqpzpn7zF2ZId8f/8CHmFKZ8j7mU4OUXTNRd5g+ZHBPsgKEwoqxCtdQvExE5LprwwPAgoicguNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.countdown/2.2.0/jquery.countdown.min.js" integrity="sha256-Ikk5myJowmDQaYVCUD0Wr+vIDkN8hGI58SGWdE671A8=" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js" integrity="sha512-RtZU3AyMVArmHLiW0suEZ9McadTdegwbgtiQl5Qqo9kunkVg1ofwueXD8/8wv3Af8jkME3DDe3yLfR8HSJfT2g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js" integrity="sha512-BmM0/BQlqh02wuK5Gz9yrbe7VyIVwOzD1o40yi1IsTjriX/NGF37NyXHfmFzIlMmoSIBXgqDiG1VNU6kB5dBbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/tippy-bundle.umd.min.js" integrity="sha512-gbruucq/Opx9jlHfqqZeAg2LNK3Y4BbpXHKDhRC88/tARL/izPOE4Zt2w6X9Sn1UeWaGbL38zW7nkL2jdn5JIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/3.0.1/marked.min.js" integrity="sha512-VUuO/d6MS7hXmiFGEj7HtUa2FCI6Ll+xPvX9yX3bxn7ZqDWwleqXa8dtW13brbZ1ld2jiTrv8hWbpfp4B5mi4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.2.1/sweetalert2.all.js" integrity="sha512-A7LzqKE/pm9ofgS0Lxu7qroQS5SkKJQaYJkJ/66nQiWZfEdeGlBq5zEXQ63VRmXZK8zPpCgFf2WQJIAljI0Vdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/modal-video@2.4.6/js/modal-video.min.js" integrity="sha256-VqINwNxkS4VEDMq5O52YTckX+Mx84X6bafO8NxF21Xw=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js" integrity="sha256-DiHJ7hbvMejsMyP76bpVWacb5HSHQ2sQlrJV8n7KEvA=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/6.0.0/echarts.min.js" integrity="sha512-4/g9GAdOdTpUP2mKClpKsEzaK7FQNgMjq+No0rX8XZlfrCGtbi4r+T/p5fnacsEC3zIAmHKLJUL7sh3/yVA4OQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/6.0.0/theme/dark.min.js" integrity="sha512-3Zm64ayK7DflnnyO2pKkLJX3v9Sb90mvahbwPUuMzEf42HI6k8tquIx5VsNBjEWAcYJWzvimbqnTkLl2QdCUmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.19.1/video.min.js" integrity="sha512-48NkCweTzA9u2sP4GgKcEDm6IScPIMga142ipKFNcHfz7feUJXDJxO1jwc2l+5MvWfwMj4BDfQv8WIMhrPxZLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.2.1/mustache.min.js" integrity="sha512-Qjrukx28QnvFWISw9y4wCB0kTB/ISnWXPz5/RME5o8OlZqllWygc1AB64dOBlngeTeStmYmNTNcM6kfEjUdnnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.1.0/pako.min.js" integrity="sha512-g2TeAWw5GPnX7z0Kn8nFbYfeHcvAu/tx6d6mrLe/90mkCxO+RcptyYpksUz35EO337F83bZwcmUyHiHamspkfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+        <script src="https://cdn.poe2db.tw/js/ModsView.ccf47bc9016c7baf.js"></script>
+        <script src="https://cdn.poe2db.tw/js/poedb_header.ebaa69a7fd6ad53e.js"></script>
+    
+    <script data-cfasync="false">window.nitroAds=window.nitroAds||{createAd:function(){return new Promise(e=>{window.nitroAds.queue.push(["createAd",arguments,e])})},addUserToken:function(){window.nitroAds.queue.push(["addUserToken",arguments])},queue:[]};</script>
+    <script data-cfasync="false" async src="https://s.nitropay.com/ads-2013.js"></script>
+
+    <meta property="og:site_name" content="poe2db.tw">
+
+  </head>
+
+  <body>
+
+    <div id="consent-box" style="display:none">
+      <button onclick="window.__cmp('showModal');">
+        Update cookie preferences
+      </button>
+    </div>
+    
+    <script>
+      if (window["nitroAds"] && window["nitroAds"].loaded) {
+        document.getElementById("consent-box").style.display = window["__tcfapi"]
+          ? ""
+          : "none";
+      } else {
+        document.addEventListener(
+          "nitroAds.loaded",
+          () =>
+            (document.getElementById("consent-box").style.display = window["__tcfapi"]
+              ? ""
+              : "none")
+        );
+      }
+    </script>
+
+
+    <div class="background-image item-popup--poe2"></div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6598Z863E2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6598Z863E2');
+</script>
+
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container">
+            <a class="navbar-brand fw-bold" href="/us/">PoE2<span class='brand-suffix'>DB</span><sub></sub></a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"  aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-i18n="ClientStrings|UIOptionsSectionTitleItems|Name">Item</span> <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="themes">
+                    <li><a class="dropdown-item" href="/us/Items" data-i18n="ClientStrings|UIOptionsSectionTitleItems|Name">Item</a></li>
+                    <li><a class="dropdown-item" href="/us/Unique_item" data-i18n="ClientStrings|ItemDisplayStringUnique|Name"></a></li>
+                    <li><a class="dropdown-item" href="/us/Reforging_Bench" data-i18n="ClientStrings|RecipeBenchTitle|Name"></a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/us/Gem" data-i18n="ClientStrings|ItemDisplayStringGem|Name">Gem</a></li>
+                    <li><a class="dropdown-item" href="/us/Skill_Gems" data-i18n="ItemClasses|Active Skill Gem|Name">Skill Gems</a></li>
+                    <li><a class="dropdown-item" href="/us/Support_Gems" data-i18n="ItemClasses|Support Skill Gem|Name">Support Gems</a></li>
+                    <li><a class="dropdown-item" href="/us/Spirit_Gems" data-i18n-tw="精神寶石">Spirit Gems</a></li>
+                    <li><a class="dropdown-item" href="/us/Lineage_Supports" data-i18n="KeywordPopups|LineageSupports|Name">Lineage Supports</a></li>
+                  </ul>
+                </li>
+    
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-i18n="ClientStrings|ExpeditionModsTitle|Name">Modifiers</span> <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="themes">
+                    <li><a class="dropdown-item" href="/us/Modifiers" data-i18n="ClientStrings|ExpeditionModsTitle|Name">Modifiers</a></li>
+                    <li><a class="dropdown-item" href="/us/Desecrated_Modifiers" data-i18n="KeywordPopups|Abyssalify|Name">Desecrated Modifiers</a></li>
+                    <li><a class="dropdown-item" href="/us/Keywords" data-i18n-tw="提示字">Keywords</a></li>
+                    <li><a class="dropdown-item" href="/us/Crafting" data-i18n="ClientStrings|CraftingWindowTitle|Name">Crafting</a></li>
+                    <li><a class="dropdown-item" href="/us/Liquid_Emotions" data-i18n="KeywordPopups|DistilledEmotion|Name"></a></li>
+                  </ul>
+                </li>
+    
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-i18n="ClientStrings|ItemDisplayStringQuest|Name">Quest</span> <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a class="dropdown-item" href="/us/Quest" data-i18n="ClientStrings|ItemDisplayStringQuest|Name">Quest</a></li>
+                    <li><a class="dropdown-item" href="/us/Ascendancy_class" data-i18n="ClientStrings|TutorialPanelAscendancies|Name">Ascendancy Classes</a></li>
+                    <li><a class="dropdown-item" href="/us/passive-skill-tree/" data-i18n="ClientStrings|ActionOpenPassivePanel|Name">Passive Skill Tree</a></li>
+                    <li><a class="dropdown-item" href="/us/Act" data-i18n-tw="章節">Act</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/us/Waystones" data-i18n="ItemClasses|Map|Name">Waystones</a></li>
+                    <li><a class="dropdown-item" href="/us/Endgame" data-i18n="Acts|Endgame|Name"></a></li>
+                    <li><a class="dropdown-item" href="/us/atlas-skill-tree/" data-i18n="ClientStrings|ActionOpenAtlasPassivesScreen|Name"></a></li>
+                  </ul>
+                </li>
+    
+                <li class="nav-item"><a class="nav-link" href="Economy" data-i18n-tw="經濟" data-i18n-cn="经济">Economy</a></li>
+    
+                <li class="nav-item"><a class="ms-4 nav-link  bg-warning rounded-circle" style="color: #172534" href="/us/patreon">Patreon</a></li>
+              </ul>
+    
+    
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link fw-bold" aria-current="page" href="https://poedb.tw">PoE<span class="brand-suffix">DB</span></a>
+                </li>
+    
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-language fa-lg"></i> <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a class="dropdown-item" href="/tw/Spirit_Walker">TW 繁體中文</a></li>
+                    <li><a class="dropdown-item" href="/cn/Spirit_Walker">CN 简体中文</a></li>
+                    <li><a class="dropdown-item" href="/us/Spirit_Walker">US English</a></li>
+                    <li><a class="dropdown-item" href="/kr/Spirit_Walker">KR 한국어</a></li>
+                    <li><a class="dropdown-item" href="/jp/Spirit_Walker">JP Japanese</a></li>
+                    <li><a class="dropdown-item" href="/ru/Spirit_Walker">RU Русский</a></li>
+                    <li><a class="dropdown-item" href="/pt/Spirit_Walker">PO Português</a></li>
+                    <li><a class="dropdown-item" href="/th/Spirit_Walker">TH ภาษาไทย</a></li>
+                    <li><a class="dropdown-item" href="/fr/Spirit_Walker">FR Français</a></li>
+                    <li><a class="dropdown-item" href="/de/Spirit_Walker">DE Deutsch</a></li>
+                    <li><a class="dropdown-item" href="/sp/Spirit_Walker">ES Spanish</a></li>
+                  </ul>
+                </li>
+              </ul>
+    
+            <form class="form-inline my-2 my-lg-0" role="search" action="search">
+              <input type="hidden" name="token" value="a534bd85662c2e328136d57e90e18e78b97fe4db3e781dabf3af563ce818aebe9444a9">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q" id="navautosearch">
+            </form>
+    
+            </div><!--/.nav-collapse -->
+          </div><!--/.container-fluid -->
+        </nav>
+    </header>
+
+<script>sidebar160("leftside_banner", "left");</script>
+<script>sidebar160("rightside_banner", "right");</script>
+
+
+
+    <div class="page poe2">
+    <div class="page-content theme-showcase container" role="main">
+
+
+<div class="card mb-2" id="head_toolbar" style="background: transparent">
+  <div class="card-body p-1">
+    <div class="league_bar text-center">
+      <a href="Atziris_Temple" data-bs-toggle="tooltip" title="Atziri v0.4" ><span class="MinimapIcons"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/minimap/player/IncursionAtziriActive.webp" alt="IncursionAtziriActive" /></span></a><a href="Waystones" data-bs-toggle="tooltip" title="Waystones" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/da31798e01b44b79e1f1f55e319b8b9a9aca315d50feef437f510eea0724b9a7"><img loading="lazy" src="https://cdn.poe2db.tw/image/art/2ditems/maps/endgamemaps/endgamemap1.webp"/></a><a href="Shrine" data-bs-toggle="tooltip" title="Shrine" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/22b3499841a81ab3dca1572dc508da97f16133fa075031179d700b98c4ac80a7"><span class="MinimapIcons"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/minimap/player/Shrine.webp" alt="Shrine" /></span></a><a href="Strongbox" data-bs-toggle="tooltip" title="Strongbox" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/c7f67f991d57f05e9e51683379ddb7b0eda58df20cbf75d8af8b0da92b2814bc"><span class="MinimapIcons"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/minimap/player/Strongbox.webp" alt="Strongbox" /></span></a><a href="Essence" data-bs-toggle="tooltip" title="Essence" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/8b449ca1da88fdabf109adfb761067335c9670c3317eeea019d0c4cd0a590e79"><span class="MinimapIcons"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/minimap/player/Essence.webp" alt="Essence" /></span></a><a href="Archnemesis" data-bs-toggle="tooltip" title="Archnemesis" ><span class="MinimapIcons"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/minimap/player/RareMonsterAlive.webp" alt="RareMonsterAlive" /></span></a><a href="Azmeri_Spirit" data-bs-toggle="tooltip" title="Azmeri Spirit v0.2" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/0f0d966bb726c365591e56a3ebb372b5e578f754d1ffcb1a487feababbec25d1"><span class="MinimapIcons"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/minimap/player/SpiritActivated.webp" alt="SpiritActivated" /></span></a><a href="Rogue_Exile" data-bs-toggle="tooltip" title="Rogue Exile" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/32b18ae23924d5645de8463a841a40a37fff14c35dc3745cf76679a33dd0f82d"><span class="MinimapIcons"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/minimap/player/RogueExile.webp" alt="RogueExile" /></span></a><a href="Map_Boss" data-bs-toggle="tooltip" title="Map Boss" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/a007b720196c75cfea84debe486bb44f766cff7f6758b8998ce4b45ddf3ce3ae"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/AtlasScreen/AtlasIconContent/AtlasIconContentMapBoss.webp"/></a><a href="Precursor_Towers" data-bs-toggle="tooltip" title="Precursor Towers" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/b1f5c6145e5f6fb77ca56a3a13db85ebbf9646410893c23da0116bb53ead9714"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/MapLegend/LostTower.webp"/></a><a href="Corrupted_Nexus" data-bs-toggle="tooltip" title="Corrupted Nexus" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/583523a6deb0a2271633857703b1bb89d5765119758cfb182d2e7bf4f658df1a"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/AtlasScreen/AtlasIconContent/AtlasIconContentCorruptionNexusNoGrowth.webp"/></a><a href="Abyss" data-bs-toggle="tooltip" title="Abyss v0.3" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/bea0a51896ba146ce52b2f55542b7b78aeb92dfadc8eaabaf70333a58083a9b0"><img loading="lazy" src="https://cdn.poe2db.tw/image/art/textures/interface/2d/2dart/uiimages/ingame/worldmap/mapbuttonabysshub.webp"/></a><a href="Breach" data-bs-toggle="tooltip" title="Breach" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/aab99b746dc81e45d3105653d54f49badee821324b2ae1417a8834fbae9f698b"><img loading="lazy" src="https://cdn.poe2db.tw/image/art/2dart/uiimages/ingame/atlasscreen/atlasiconcontent/atlasiconcontentbreach.webp"/></a><a href="Ritual" data-bs-toggle="tooltip" title="Ritual" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/422d58c1d59cfa4eaa519e1b080f6805f7a953495d5e87b32161edf941ba6a55"><img loading="lazy" src="https://cdn.poe2db.tw/image/art/2dart/uiimages/ingame/atlasscreen/atlasiconcontent/atlasiconcontentritual.webp"/></a><a href="Delirium" data-bs-toggle="tooltip" title="Delirium" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/018433e39be6e7596f9f5863ab811bbd3b19f3a2982bbd57a0533607ce1979ac"><img loading="lazy" src="https://cdn.poe2db.tw/image/art/2dart/uiimages/ingame/atlasscreen/atlasiconcontent/atlasiconcontentdelirium.webp"/></a><a href="Expedition" data-bs-toggle="tooltip" title="Expedition" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/f1c5e1f31a6974f4f0d77eefda5f4f80ef59862cbfa8643528784dfd84734336"><img loading="lazy" src="https://cdn.poe2db.tw/image/art/2dart/uiimages/ingame/atlasscreen/atlasiconcontent/atlasiconcontentexpedition.webp"/></a><a href="The_Burning_Monolith" data-bs-toggle="tooltip" title="The Burning Monolith" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/d15b983a1a65f4f105efbe8222eb596a7042a1b089561e868aa19eccea2584bd"><img loading="lazy" src="https://cdn.poe2db.tw/image/art/2dart/uiimages/ingame/maplegend/monolith.webp"/></a><a href="Trial_of_the_Sekhemas" data-bs-toggle="tooltip" title="Trial of the Sekhemas" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/105f81cab9c06cbc40ac8051a29ccc806981200b1acaf3680d95a4c508eec89a"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/WorldMap/MapButtonSanctum.webp"/></a><a href="The_Trial_of_Chaos" data-bs-toggle="tooltip" title="The Trial of Chaos" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_KeywordPopups_hover/105f81cab9c06cbc40ac8051a29ccc806981200b1acaf3680d95a4c508eec89a"><img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/WorldMap/MapButtonUltimatum.webp"/></a>
+    </div>
+  </div>
+</div>
+
+
+
+<div id="topbanner970"></div><script>topbanner970("topbanner970");</script>
+
+<ul class="nav nav-tabs d-flex flex-wrap" role="tablist"><li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" role="tab" aria-selected="true" href="#SpiritWalkerAscendancy">Spirit Walker Ascendancy /19 </a></li><li class="nav-item"><a class="nav-link" data-bs-toggle="tab" role="tab" aria-selected="false" href="#SpiritWalker">Spirit Walker</a></li></ul><div class="tab-content"><div id="SpiritWalkerAscendancy" class="tab-pane fade show active"><div   class="card mb-2 ">
+   <h5 class="card-header">Spirit Walker Ascendancy /19 </h5> <svg id="passive_skill_tree" viewBox='16278.16 5004.15 3000 3000' class='ascendancySVG'
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+<style>
+svg {
+    background-color: #222;
+}
+.nodes, .connections {
+    color: gray;
+}
+.connections .black {
+    color: black;
+    stroke-width: 3;
+}
+circle.notable.Druid1 {
+    stroke: lightblue;
+}
+circle.normal.Druid1 {
+    fill: lightblue;
+}
+image.circle-image {
+    clip-path: circle(50%);
+}
+
+</style>
+<defs>
+  <image id="basic" width="96" height="96" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/PassiveSkillScreenAscendancyFrameSmallCanAllocate.webp"/>
+  <image id="notable" width="160" height="160" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/PassiveSkillScreenAscendancyFrameLargeCanAllocate.webp"/>
+  <image id="keystone" width="160" height="160" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/PassiveSkillScreenAscendancyFrameLargeCanAllocate.webp"/>
+  <image id="basic2" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/PassiveSkillScreenAscendancyFrameSmallCanAllocate.webp"/>
+  <image id="notable2" width="240" height="240" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/PassiveSkillScreenAscendancyFrameLargeCanAllocate.webp"/>
+  <image id="keystone2" width="240" height="240" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/PassiveSkillScreenAscendancyFrameLargeCanAllocate.webp"/>
+</defs>
+<g class="connections" fill="none" stroke-width="12" stroke="currentColor">
+<image x="16278" y="5004" width="3000" height="3000" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/BaseClassIllustrations/SpiritWalkerAscendancy.webp"/><path d='M 18333.96 7768.35 A 846 846 0 0 1 17895.96 7768.35' id='c41401-62702'/>
+<path class='black' d='M 18333.96 7768.35 A 846 846 0 0 1 17895.96 7768.35' id='c41401-62702'/>
+<path d='M 17999.96 7603.05 A 662 662 0 0 1 17541.66 7282.15' id='c62743-21519'/>
+<path class='black' d='M 17999.96 7603.05 A 662 662 0 0 1 17541.66 7282.15' id='c62743-21519'/>
+<path d='M 17868.46 7378.15 A 493 493 0 0 0 18463.56 7299.75' id='c46070-62424'/>
+<path class='black' d='M 17868.46 7378.15 A 493 493 0 0 0 18463.56 7299.75' id='c46070-62424'/>
+<path d='M 18763.06 7494.95 A 846 846 0 0 1 18333.96 7768.35' id='c26294-41401'/>
+<path class='black' d='M 18763.06 7494.95 A 846 846 0 0 1 18333.96 7768.35' id='c26294-41401'/>
+<path d='M 17895.96 7768.35 A 846 846 0 0 1 17421.96 7436.35' id='c62702-27773'/>
+<path class='black' d='M 17895.96 7768.35 A 846 846 0 0 1 17421.96 7436.35' id='c62702-27773'/>
+<path d='M 18494.66 7493.45 A 662 662 0 0 1 17999.96 7603.05' id='c37769-62743'/>
+<path class='black' d='M 18494.66 7493.45 A 662 662 0 0 1 17999.96 7603.05' id='c37769-62743'/>
+<path d='M 17541.66 7282.15 A 662 662 0 0 1 17452.96 6951.15' id='c21519-765'/>
+<path class='black' d='M 17541.66 7282.15 A 662 662 0 0 1 17452.96 6951.15' id='c21519-765'/>
+<path d='M 17621.96 6951.15 A 493 493 0 0 1 17868.46 6524.15' id='c41085-4367'/>
+<path class='black' d='M 17621.96 6951.15 A 493 493 0 0 1 17868.46 6524.15' id='c41085-4367'/>
+<path d='M 17621.96 6951.15 A 493 493 0 0 0 17868.46 7378.15' id='c41085-46070'/>
+<path class='black' d='M 17621.96 6951.15 A 493 493 0 0 0 17868.46 7378.15' id='c41085-46070'/>
+<path d='M 18847.66 6528.15 A 846 846 0 0 0 18537.96 6218.45' id='c45228-39887'/>
+<path class='black' d='M 18847.66 6528.15 A 846 846 0 0 0 18537.96 6218.45' id='c45228-39887'/>
+<path d='M 19050.26 6411.15 A 1080 1080 0 0 0 18654.96 6015.85' id='c5733-56489'/>
+<path class='black' d='M 19050.26 6411.15 A 1080 1080 0 0 0 18654.96 6015.85' id='c5733-56489'/>
+<path d='M 18776.96 6951.15 A 662 662 0 0 0 18688.26 6620.15' id='c27841-28254'/>
+<path class='black' d='M 18776.96 6951.15 A 662 662 0 0 0 18688.26 6620.15' id='c27841-28254'/>
+<path d='M 18932.16 7170.15 A 846 846 0 0 1 18763.06 7494.95' id='c63493-26294'/>
+<path class='black' d='M 18932.16 7170.15 A 846 846 0 0 1 18763.06 7494.95' id='c63493-26294'/>
+<line x1='18932' y1='7170' x2='18494' y2='7493' id='c63493-37769'/>
+<line class='black' x1='18932' y1='7170' x2='18494' y2='7493' id='c63493-37769'/>
+<path d='M 18932.16 7170.15 A 846 846 0 0 0 18847.66 6528.15' id='c63493-45228'/>
+<path class='black' d='M 18932.16 7170.15 A 846 846 0 0 0 18847.66 6528.15' id='c63493-45228'/>
+<path d='M 18932.16 7170.15 A 846 846 0 0 0 19050.26 6411.15' id='c63493-5733'/>
+<line x1='18932' y1='7170' x2='18463' y2='7299' id='c63493-62424'/>
+<line class='black' x1='18932' y1='7170' x2='18463' y2='7299' id='c63493-62424'/>
+<line x1='18932' y1='7170' x2='18776' y2='6951' id='c63493-27841'/>
+<line class='black' x1='18932' y1='7170' x2='18776' y2='6951' id='c63493-27841'/>
+
+</g>
+<g class="nodes" stroke="currentColor" fill="currentColor">
+<image class="circle-image" x="18258" y="7693" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT-UNUSED_Huntress2Notable1#AscendancyHuntress2Notable1"><use x="18213" y="7648" id="n41401" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/c385515595706792c611f7aafec9e92bc35452615de72aad52dccc174f17366e" xlink:href="#notable2"/></a><image class="circle-image" x="17346" y="7361" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT-UNUSED_Huntress2Notable2#AscendancyHuntress2Notable2"><use x="17301" y="7316" id="n27773" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/3c1c7f84842241b35fc8d99ac9651cf00b409bf1e18f080c18e9e298ce81dbf8" xlink:href="#notable2"/></a><image class="circle-image" x="17924" y="7528" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT-UNUSED_Huntress2Notable3#AscendancyHuntress2Notable3"><use x="17879" y="7483" id="n62743" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/dacaa7529923de4236df8aacb15d81ec3db274feba660c9751103c87228c1ba2" xlink:href="#notable2"/></a><image class="circle-image" x="17377" y="6876" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT-UNUSED_Huntress2Notable4#AscendancyHuntress2Notable4"><use x="17332" y="6831" id="n765" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/8a83c531b09adc1dfc0dda504f56d34b728d1320da5e8f87449488f1f1b8afec" xlink:href="#notable2"/></a><image class="circle-image" x="17793" y="7303" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT-UNUSED_Huntress2Notable5#AscendancyHuntress2Notable5"><use x="17748" y="7258" id="n46070" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/ba4585dca53ac39b7596a5707ada0cf6b86f6bb9948d89c81d8a116ae07f4bb2" xlink:href="#notable2"/></a><image class="circle-image" x="17793" y="6449" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT-UNUSED_Huntress2Notable6#AscendancyHuntress2Notable6"><use x="17748" y="6404" id="n4367" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/2afbc378ca24b798f72c17c030ad90e932c609bb5510d520a1941eccb08607f3" xlink:href="#notable2"/></a><image class="circle-image" x="18462" y="6143" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT-UNUSED_Huntress2Notable7#AscendancyHuntress2Notable7"><use x="18417" y="6098" id="n39887" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/98f63882a9a64aec9156d9ace9908d7ba722e6d5ebc4d1f1ceb60f37595c5fe8" xlink:href="#notable2"/></a><image class="circle-image" x="18579" y="5940" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT-UNUSED_Huntress2Notable8#AscendancyHuntress2Notable8"><use x="18534" y="5895" id="n56489" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/9ceb39a8e0485dd5b99c7f015668188a02baf690fb24548ce95bb7b2d1d2e8cd" xlink:href="#notable2"/></a><image class="circle-image" x="18613" y="6545" width="150" height="150" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Notable9#AscendancyHuntress2Notable9"><use x="18568" y="6500" id="n28254" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/c3519b65c8e48ab778caefe0beb6b8c4ef1306709e3c5dee5edc317a193e8f5a" xlink:href="#notable2"/></a><image class="circle-image" x="18718" y="7449" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Small1#AscendancyHuntress2Small1"><use x="18691" y="7422" id="n26294" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/7b6d8d12eecaf908b1652c13b094956816a54434ef8191704b1e027946b8f785" xlink:href="#basic2"/></a><image class="circle-image" x="17850" y="7723" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Small2_#AscendancyHuntress2Small2_"><use x="17823" y="7696" id="n62702" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/cb20d6968c0230a1712bc85d6105dbdeda732496e2e99f33c210634058d8109f" xlink:href="#basic2"/></a><image class="circle-image" x="18449" y="7448" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Small3#AscendancyHuntress2Small3"><use x="18422" y="7421" id="n37769" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/08dea8addd75dcc05f42e38739be87dd727e37c339e230f7407f94a330df80f4" xlink:href="#basic2"/></a><image class="circle-image" x="17496" y="7237" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Small4#AscendancyHuntress2Small4"><use x="17469" y="7210" id="n21519" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/edce6201b194a6e9493f0453939df2883f8d4358122879432785c547e217669c" xlink:href="#basic2"/></a><image class="circle-image" x="18418" y="7254" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Small5#AscendancyHuntress2Small5"><use x="18391" y="7227" id="n62424" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/f052c763ab721e6a3e832f0d4c020aa0628dd7d61aa81c3cdadfcb2222990827" xlink:href="#basic2"/></a><image class="circle-image" x="17576" y="6906" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Small6#AscendancyHuntress2Small6"><use x="17549" y="6879" id="n41085" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/7810167a434d1dcd9ffefaf7c572dafd53a051470cfda3161cba60bfbd202bbf" xlink:href="#basic2"/></a><image class="circle-image" x="18802" y="6483" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Small7#AscendancyHuntress2Small7"><use x="18775" y="6456" id="n45228" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/9dbc27e07eea4105eb58ec6699cc832df1f0ad234cfe4abbbc45e918e76ed18d" xlink:href="#basic2"/></a><image class="circle-image" x="19005" y="6366" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="AscendancyHuntress2Small8#AscendancyHuntress2Small8"><use x="18978" y="6339" id="n5733" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/30893160e62f09f42d8dfe94875d07cf5c7871bd487fdc7270aadc6f9d366dd4" xlink:href="#basic2"/></a><image class="circle-image" x="18731" y="6906" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp" />
+<a xlink:href="DNT_AscendancyHuntress2Small9#AscendancyHuntress2Small9"><use x="18704" y="6879" id="n27841" data-hover="https://cdn.poe2db.tw/cache2/us/Poe_Data_PassiveSkills_hover/6774b538739a302752160dbf589ad1d869b370a7d2cf0300d36ead9f248f4df8" xlink:href="#basic2"/></a><image class="circle-image" x="18887" y="7125" width="90" height="90" xlink:href="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/InGame/PassiveSkillScreenAscendancyMiddle.webp" />
+
+</g>
+</svg><style>#n63493 {color:yellow}
+</style><div class="d-flex flex-wrap">
+
+<div class="newItemPopup NormalItemPopup item-popup--poe2 "
+>
+    <div class="itemHeader singleLine">
+
+        <div class="itemName typeLine">
+            <span class="lc">Spirit Walker</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="Stats">
+            <div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div><div class="separator"></div>
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</div>
+
+
+        <div class="itemboximage">
+
+                <img loading="lazy" class="" src="https://cdn.poe2db.tw/image/Art/2DArt/UIImages/Common/IconDexFourb_Huntress2.webp"/>
+
+        </div>
+
+
+
+</div>
+  <div class="row row-cols-1 row-cols-lg-2 g-2"><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a href="/us/Beastmaster" data-hover="?s=Data%5CPassiveSkills%2F63493">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/damage.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F63493" href="Beastmaster">Beastmaster</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F26294">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F26294" href="">AscendancyHuntress2Small1</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F62702">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F62702" href="">AscendancyHuntress2Small2_</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F37769">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F37769" href="">AscendancyHuntress2Small3</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F21519">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F21519" href="">AscendancyHuntress2Small4</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F62424">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F62424" href="">AscendancyHuntress2Small5</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F41085">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F41085" href="">AscendancyHuntress2Small6</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F45228">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F45228" href="">AscendancyHuntress2Small7</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F5733">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F5733" href="">AscendancyHuntress2Small8</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_basic ">
+    <div class="passive-icon-frame"></div>
+    <a href="/us/DNT_AscendancyHuntress2Small9" data-hover="?s=Data%5CPassiveSkills%2F27841">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F27841" href="DNT_AscendancyHuntress2Small9">[DNT] AscendancyHuntress2Small9</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div><div class="separator"></div><div class="implicitMod"><div class="mt-2 text-danger">Requires <a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F41401" href="">[DNT-UNUSED] Huntress2Notable1</a>, <a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F62743" href="">[DNT-UNUSED] Huntress2Notable3</a>, <a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F46070" href="">[DNT-UNUSED] Huntress2Notable5</a></div></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F41401">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F41401" href="">[DNT-UNUSED] Huntress2Notable1</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F27773">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F27773" href="">[DNT-UNUSED] Huntress2Notable2</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F62743">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F62743" href="">[DNT-UNUSED] Huntress2Notable3</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F765">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F765" href="">[DNT-UNUSED] Huntress2Notable4</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F46070">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F46070" href="">[DNT-UNUSED] Huntress2Notable5</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F4367">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F4367" href="">[DNT-UNUSED] Huntress2Notable6</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F39887">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F39887" href="">[DNT-UNUSED] Huntress2Notable7</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F56489">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F56489" href="">[DNT-UNUSED] Huntress2Notable8</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div></div></div></div><div class="col"><div class="d-flex border-top rounded"><div class="flex-shrink-0">  <div class="passive-icon-container passive-icon-type__ascendancy_notable ">
+    <div class="passive-icon-frame"></div>
+    <a  data-hover="?s=Data%5CPassiveSkills%2F28254">
+      <img loading="lazy" src="https://cdn.poe2db.tw/image/Art/2DArt/SkillIcons/passives/Primalist/PrimalistNode.webp">
+    </a>
+  </div></div><div class="flex-grow-1 ms-2"><div><a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F28254" href="">AscendancyHuntress2Notable9</a></div><div class="property">Ascendancy: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CAscendancy%2FHuntress2" href="/us/Wild_Speaker">Wild Speaker</a></span></div><div class="property">Character: <span class='colourDefault'><a class="Huntress" data-hover="?s=Data%5CCharacters%2FMetadata%2FCharacters%2FDex%2FDexFourb" href="/us/Huntress">Huntress</a></span></div><div class="separator"></div><div class="implicitMod"><div class="mt-2 text-danger">Requires <a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F41401" href="">[DNT-UNUSED] Huntress2Notable1</a>, <a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F62743" href="">[DNT-UNUSED] Huntress2Notable3</a>, <a class="PassiveSkills" data-hover="?s=Data%5CPassiveSkills%2F46070" href="">[DNT-UNUSED] Huntress2Notable5</a></div></div></div></div></div></div>  </div></div><div id="SpiritWalker" class="tab-pane fade"><div class="card"><h4 class="card-header" data-tabname="Community Wiki">Community Wiki</h4></div><div class="card mb-1">
+    <div class="card-body markdown-body">
+        <a class="btn btn-primary float-end" href='/us/marked?id=Spirit_Walker' data-i18n="ClientStrings|HideoutEditControlEdit|Name">Edit</a>
+        <div id="markContent"><h1 id="spirit-walker">Spirit Walker</h1>
+<p>Bound to the wilds, this class calls upon spirits to answer to her will granting different abilities aligning with the Stag, Owl or Bear. Through their guidance, the Spirit Walker may subdue even the most formidable beasts, binding them in spirit, or call forth a spectral companion to fight beside her.</p>
+<p><a href="https://cdn.poe2db.tw/image/0.5/huntress3_2.webp" data-lightbox="panel"></a></p>
+<p><a href='#' class="js-modal-btn" data-video-id="86MS6GHBAOg"></a></p>
+<table class="table table-hover table-striped">
+<thead>
+<tr>
+<th>Name</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>The Natural Order</td>
+<td>Tame Beast can capture Unique Beasts<br>Can have up to one Unique Tamed Beast summoned<br>Unique Tamed Beasts have 30% increased movement speed</td>
+</tr>
+<tr>
+<td>Idolatry</td>
+<td>Companions deal 10% increased damage per Idol in your Equipment<br>2% increased Reservation Efficiency of Skills per Idol in your Equipment<br>-4% to all Elemental Resistances per non-Idol Augment in your Equipment</td>
+</tr>
+<tr>
+<td>Sacred Unity</td>
+<td>(Available only if you allocate Wild Protector, Primal Bounty and Vivid Stampede.)<br>This Passive Skill is free to allocate<br>Bear Spirit gains Embrace of the Wild<br>Vivid Stags leap towards enemies<br>Central Projectile of Weather-Empowered Skills leaves a trail of Soaring Ground<br><br>Embrace of the Wild: Protects the Bear Spirit’s Allies while they are in its Presence, granting them 2% of maximum Life regenerated per second and causing 5% of the damage they would take to be taken by the Bear Spirit instead.<br>Soaring Ground: Soaring Ground grants 30% increased Evasion Rating and 40% increased damage while on Full Life to you or Allies standing on it. Soaring Ground has a 4-second base duration unless otherwise specified.</td>
+</tr>
+<tr>
+<td>The Morrígan’s Guidance</td>
+<td>Gain a Vivid Wisp when Vivid Stampede ends<br>Stags deal 20% more damage per leap<br>Stags have 20% more Shock Magnitude per leap</td>
+</tr>
+<tr>
+<td>Vivid Stampede</td>
+<td>Grants Skill: <a class="GemItem" href="Vivid_Stampede" data-hover="?t=deferred&n=Vivid+Stampede&_=a370cc16">Vivid Stampede</a><br>Gain a Vivid Wisp for every 20 metres you move, up to a maximum of 3<br>Expend all Vivid Wisps to trigger Vivid Stampede when you Attack</td>
+</tr>
+<tr>
+<td>Wild Protector</td>
+<td>Grants Skill: <a class="GemItem" href="Wild_Protector" data-hover="?t=deferred&n=Wild+Protector&_=e2d45c08">Wild Protector</a></td>
+</tr>
+<tr>
+<td>The Catha’s Balance</td>
+<td>Companions deal additional Attack damage equal to 60% of your main hand weapon damage</td>
+</tr>
+<tr>
+<td>Primal Bounty</td>
+<td>Grants Skill: <a class="GemItem" href="Primal_Bounty" data-hover="?t=deferred&n=Primal+Bounty&_=6749b305">Primal Bounty</a><br>Gain a Primal Owl Feather every 4 seconds, up to a maximum of 3<br>Expend an Owl Feather when you Dodge to trigger Primal Bounty</td>
+</tr>
+<tr>
+<td>The Mhacha’s Gift</td>
+<td>Dodging can expend up to 3 Owl Feathers, granting Primal Bounty 100% more Empowerment effect per additional Feather expended<br>Gain Owl Feathers 50% faster</td>
+</tr>
+</tbody></table>
+</div>
+        <div><hr style='border-top: 1px solid white'>Wikis Content is available under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">CC BY-NC-SA 3.0</a> unless otherwise noted.</div>
+    </div>
+</div>
+<script>
+$(function() {
+    lightbox_panel();
+});
+</script>
+</div></div>
+
+<footer class="ccontainer text-center text-lg-left">
+  <div class="card p-4">
+    <div class="row">
+
+      <div class="col-lg-3 col-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Sites</h5>
+        <ul class="list-unstyled mb-0">
+          <li> <a target="_blank" href="https://poedb.tw/">poedb.tw</a> </li>
+          <li> <a target="_blank" href="https://tlidb.com/">tlidb.com</a> </li>
+          <!--<li> <a target="_blank" href="https://diablo4.cc/">diablo4.cc</a> </li>-->
+          <li> <a target="_blank" href="https://poe2db.tw/">poe2db.tw</a> </li>
+              <li> <a target="_blank" href="https://paldb.cc/">paldb.cc</a> </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">News</h5>
+        <ul class="list-unstyled mb-0">
+          <li> <a href="news">GGG Tracker</a> </li>
+          <li> <a href="League#ConcurrentPlayers">Concurrent Players</a> </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">About Site</h5>
+        <ul class="list-unstyled mb-0">
+          <li> <a href="privacy">Privacy</a> </li>
+          <li> <a href="General_disclaimer">Disclaimers</a> </li>
+          <li> <a href="patreon">Patreon</a> </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 col-6 mb-4 mb-md-0">
+        <h5 class="text-uppercase">Community</h5>
+        <ul class="list-unstyled mb-0">
+
+
+
+          <li><a target="_blank" href="https://www.reddit.com/user/chuanhsing">/u/chuanhsing</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    Copyright &copy; 2014-2026 PoE2DB.
+  </div>
+</footer>
+
+<div style=""></div>
+<div class="clearfix"></div><div id="bottom_banner"></div><script>topbanner970("bottom_banner");</script>
+    </div>
+    </div>
+
+    <a href="#top" id="toTop"><span class="fas fa-arrow-circle-up fa-3x"></span></a>
+<script>
+ $(document).ready(function()
+ {
+    if (window.location.hostname != "poedb.tw" && window.location.hostname != "poe2db.tw") {
+        window.location.href="https://poedb.tw/";
+    }
+ });
+</script>
+    <script src="https://cdn.poe2db.tw/js/poedb_footer.43e536bf51dca9e4.js"></script>
+
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"369404df4026486bb42f428b903a2162","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
