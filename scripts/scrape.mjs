@@ -123,7 +123,7 @@ async function main() {
     await CATEGORIES[cat]();
   }
   if (changelog.length > 0) {
-    const wnPath = `${OUT}/whatsnew.json`;
+    const wnPath = 'src/content/whatsnew.json';
     const existing = existsSync(wnPath) ? JSON.parse(readFileSync(wnPath, 'utf8')) : [];
     const cutoff = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
     const merged = [...changelog, ...existing].filter(e => e.date >= cutoff);
