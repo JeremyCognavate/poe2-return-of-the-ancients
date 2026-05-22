@@ -1061,3 +1061,17 @@ tr:hover td {
 .patch-notes-intro a {
   color: var(--color-parchment, #ede0c8);
 }
+
+/* ===== Unique Filter ===== */
+.unique-filter { display: flex; flex-direction: column; gap: 1rem; }
+.unique-filter-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: sticky;
+  top: 3.5rem;
+  z-index: 10;
+  background: rgba(8, 6, 5, 0.95);
+  backdrop-filter: blur(4px);
+  padding: 0.6rem 0;
+}

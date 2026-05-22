@@ -4,7 +4,7 @@ import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import Gallery from '../components/Gallery.astro';
 import ConfidenceBadge from '../components/ConfidenceBadge.astro';
-import UniqueCard from '../components/UniqueCard.astro';
+import UniqueFilter from '../components/UniqueFilter.tsx';
 import { timeline } from '../content/timeline';
 import { ascendancies } from '../content/ascendancies';
 import { endgameMechanics } from '../content/endgame';
@@ -446,13 +446,25 @@ const atlas     = endgameMechanics.find(e => e.id === 'atlas')!;
   </Section>
 
   <!-- UNIQUE ITEMS -->
-  <Section id="uniques" title="Unique Items" subtitle={`${uniqueItems.length} items — hover any card for the full PoE-style tooltip`} imageFile="Immortal_Son_2.png" imageAlt="The Immortal Son">
+  <Section id="uniques" title="Unique Items" subtitle={`${uniqueItems.length} items — hover to peek, click to pin tooltip`} imageFile="Immortal_Son_2.png" imageAlt="The Immortal Son">
     <p style="color:var(--color-text-secondary);font-size:0.9rem;margin-bottom:1.25rem;">
-      Stats sourced from PoE2DB. <ConfidenceBadge tier="datamine" /> entries are pre-launch and may shift in the patch notes (21 May 2026).
+      Stats sourced from PoE2DB. <ConfidenceBadge tier="datamine" /> entries are pre-launch and may shift at patch time.
     </p>
-    <div class="unique-grid">
-      {uniqueItems.map(item => <UniqueCard item={item} />)}
-    </div>
+    <UniqueFilter
+      items={uniqueItems.map(item => ({
+        name: item.name,
+        baseType: item.baseType,
+        itemClass: item.itemClass,
+        reqLevel: item.reqLevel,
+        implicits: item.implicits,
+        explicits: item.explicits,
+        iconUrl: item.iconUrl,
+        confidence: item.confidence,
+        note: item.note,
+        spiritWalkerSynergy: item.spiritWalkerSynergy,
+      }))}
+      client:load
+    />
   </Section>
 
   <!-- BALANCE -->
