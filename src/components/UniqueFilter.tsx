@@ -53,6 +53,7 @@ export default function UniqueFilter({ items }: Props) {
           <button
             className={`pn-cat-btn${activeClass === null ? ' active' : ''}`}
             onClick={() => setActiveClass(null)}
+            aria-pressed={activeClass === null}
           >
             All ({items.length})
           </button>
@@ -63,6 +64,7 @@ export default function UniqueFilter({ items }: Props) {
                 key={cls}
                 className={`pn-cat-btn${activeClass === cls ? ' active' : ''}`}
                 onClick={() => setActiveClass(activeClass === cls ? null : cls)}
+                aria-pressed={activeClass === cls}
               >
                 {cls} ({count})
               </button>
@@ -83,6 +85,8 @@ export default function UniqueFilter({ items }: Props) {
             key={item.name}
             className="unique-wrap"
             tabIndex={0}
+            role="button"
+            onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); (e.currentTarget as HTMLElement).click(); } }}
             data-tooltip-type="unique"
             data-tooltip-name={item.name}
             data-tooltip-base={item.baseType}
